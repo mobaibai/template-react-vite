@@ -8,7 +8,6 @@ import 'virtual:svgsprites'
 import './styles/global.scss'
 import './styles/app.scss'
 
-
 vhCheck()
 
 function App() {

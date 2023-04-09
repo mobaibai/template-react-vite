@@ -1,12 +1,13 @@
-React + Vite + Ts + Unocss + Template
-===
+# React-Vite-Ts-Unocss-Template
 
-## Use
+### Use
+
 - Start
-  ```
-  pnpm install
-  ```
+```
+pnpm install
+```
+
 - Dev
-  ```
-  pnpm dev
-  ```
+```
+pnpm dev
+```
