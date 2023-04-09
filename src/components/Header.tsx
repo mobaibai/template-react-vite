@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { RouterConfig } from '@/router/config'
+import { RouterConfig } from '@/config/router'
 
 const menuItems: MenuProps['items'] = [
   {
