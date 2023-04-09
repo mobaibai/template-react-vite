@@ -16,7 +16,7 @@ const Home: React.FC<Props> = (props) => {
     loop: { transform: 'rotateZ(360deg)' },
     to: { transform: 'rotateZ(0)' },
     config: {
-      duration: 200
+      duration: 180
     }
   })
 
