@@ -21,10 +21,10 @@ const Home: React.FC<Props> = (props) => {
   })
 
   return (
-    <div className="home-container" p-20px>
-      <div className="count-action" flex items-center justify-center children-mx-10px>
+    <div className="home-container p-10">
+      <div className="count-action flex items-center justify-center">
         <Button onClick={countCut}>-</Button>
-        <animated.div className='count-view' style={{ ...countStyles }} text="center 30px slate-600">
+        <animated.div className='count-view mx-5' style={{ ...countStyles }} text="center 30px slate-600">
           {count}
         </animated.div>
         <Button onClick={countInc}>+</Button>

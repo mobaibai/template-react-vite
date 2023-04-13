@@ -1,7 +1,6 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import path from "path"
-import Unocss from "unocss/vite"
 import { viteMockServe } from "vite-plugin-mock"
 import { svgsprites } from "./vite_plugins/svgsprites"
 
@@ -11,12 +10,12 @@ export default defineConfig(({ command }) => ({
     isDev: command === "serve",
   },
 
-  plugins: [Unocss(), react(), viteMockServe(), svgsprites({ noOptimizeList: ["logo"] })],
+  plugins: [react(), viteMockServe(), svgsprites({ noOptimizeList: ["logo"] })],
 
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
-    }
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
 
   server: {
