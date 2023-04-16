@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 export const RouterConfig = {
   Home: {
     key: '/home',
@@ -18,7 +16,3 @@ export const RouterConfig = {
 }
 
 export const RouterArr = Object.values(RouterConfig)
-
-export const LazyLoad = (path: string) => {
-  return React.lazy(() => import(`@/pages${path}`))
-}
