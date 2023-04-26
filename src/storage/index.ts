@@ -45,7 +45,7 @@ export const setStorage = <T>(key: string, value: T | null, expire = 0) => {
   expire = expire ? expire : config.expire
   const data = {
     value: value, // 存储值
-    time: Date.now() / 1000, //存值时间戳
+    time: Date.now() / 1000, // 存值时间戳
     expire: expire, // 过期时间
   }
 
@@ -178,7 +178,8 @@ const autoAddPrefix = (key: string) => {
  */
 const autoRemovePrefix = (key: string) => {
   const len: number = config.prefix ? config.prefix.length + 1 : 0
-  return key.substr(len)
+  // return key.substr(len) 已弃用
+  return key.substring(len)
 }
 
 /**
@@ -186,7 +187,6 @@ const autoRemovePrefix = (key: string) => {
  * @param {string} data
  * @return {*}
  */
-
 const encrypt = (data: string) => {
   if (typeof data === "object") {
     try {
