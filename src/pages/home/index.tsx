@@ -1,13 +1,13 @@
-import { Button } from "antd"
-import { useCountStore } from "@/stores/useCountStore"
-import { useSpring, animated } from '@react-spring/web'
-import { apiGetHomeData } from "./request"
+import { Button } from 'antd'
+import { animated, useSpring } from '@react-spring/web'
+import { useCountStore } from '@/stores/useCountStore'
 
 interface Props {
   title?: string
 }
 const Home: React.FC<Props> = (props) => {
-  if (props.title) document.title = props.title
+  if (props.title)
+document.title = props.title
   const countInc = useCountStore(state => state.inc)
   const countCut = useCountStore(state => state.cut)
   const count = useCountStore(state => state.count)

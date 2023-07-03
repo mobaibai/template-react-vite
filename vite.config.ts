@@ -1,20 +1,20 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
-import path from "path"
-import { viteMockServe } from "vite-plugin-mock"
-import { svgsprites } from "./vite_plugins/svgsprites"
+import path from 'node:path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { viteMockServe } from 'vite-plugin-mock'
+import { svgsprites } from './vite_plugins/svgsprites'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   define: {
-    isDev: command === "serve",
+    isDev: command === 'serve',
   },
 
-  plugins: [react(), viteMockServe(), svgsprites({ noOptimizeList: ["logo"] })],
+  plugins: [react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 
@@ -22,7 +22,7 @@ export default defineConfig(({ command }) => ({
     open: true,
   },
 
-  base: "./",
+  base: './',
 
   build: {
     chunkSizeWarningLimit: 1500,

@@ -1,8 +1,8 @@
-import path from "path"
-import fs from "fs"
-import store from "svgstore"
-import { optimize } from "svgo"
-import type { Plugin, ViteDevServer } from "vite"
+import path from 'node:path'
+import fs from 'node:fs'
+import store from 'svgstore'
+import { optimize } from 'svgo'
+import type { Plugin, ViteDevServer } from 'vite'
 
 interface Options {
   id?: string
@@ -10,26 +10,26 @@ interface Options {
   inline?: boolean
   noOptimizeList?: string[]
 }
-export const svgsprites = (options: Options = {}): Plugin => {
-  const virtualModuleId = `virtual:svgsprites${options.id ? `-${options.id}` : ""}`
+export function svgsprites(options: Options = {}): Plugin {
+  const virtualModuleId = `virtual:svgsprites${options.id ? `-${options.id}` : ''}`
   const resolvedVirtualModuleId = `\0${virtualModuleId}`
-  const { inputFolder = "src/assets/icons", inline = false } = options
+  const { inputFolder = 'src/assets/icons', inline = false } = options
 
   const generateCode = () => {
     const sprites = store(options)
     const iconsDir = path.resolve(inputFolder)
 
     for (const file of fs.readdirSync(iconsDir)) {
-      if (!file.endsWith(".svg")) {
+      if (!file.endsWith('.svg')) {
         continue
       }
       const filepath = path.join(iconsDir, file)
       const svgId = path.parse(file).name
-      const code = fs.readFileSync(filepath, { encoding: "utf-8" })
+      const code = fs.readFileSync(filepath, { encoding: 'utf-8' })
       const symbol = options.noOptimizeList?.includes(svgId)
         ? code
         : optimize(code, {
-            plugins: ["cleanupAttrs", "removeDoctype", "removeComments", "removeTitle", "removeDesc", "removeEmptyAttrs", { name: "removeAttrs", params: { attrs: "(data-name|fill)" } }],
+            plugins: ['cleanupAttrs', 'removeDoctype', 'removeComments', 'removeTitle', 'removeDesc', 'removeEmptyAttrs', { name: 'removeAttrs', params: { attrs: '(data-name|fill)' } }],
           }).data
       sprites.add(svgId, symbol)
     }
@@ -42,7 +42,7 @@ export const svgsprites = (options: Options = {}): Plugin => {
       return
     }
     const code = generateCode()
-    server.ws.send("svgsprites:change", { code })
+    server.ws.send('svgsprites:change', { code })
     const mod = server.moduleGraph.getModuleById(resolvedVirtualModuleId)
     if (!mod) {
       return
@@ -51,12 +51,12 @@ export const svgsprites = (options: Options = {}): Plugin => {
   }
 
   return {
-    name: "svgsprites",
+    name: 'svgsprites',
     configureServer(server) {
-      server.watcher.on("add", (file) => {
+      server.watcher.on('add', (file) => {
         handleFileCreationOrUpdate(file, server)
       })
-      server.watcher.on("change", (file) => {
+      server.watcher.on('change', (file) => {
         handleFileCreationOrUpdate(file, server)
       })
     },
