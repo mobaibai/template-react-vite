@@ -1,4 +1,5 @@
 import { HashRouter } from 'react-router-dom'
+import { ConfigProvider } from 'antd'
 import vhCheck from 'vh-check'
 import RouterConainer from './router'
 import { Header } from '@/components/Header'
@@ -11,12 +12,16 @@ vhCheck()
 function App() {
   return (
     <div className="App">
-      <div className="limit">
+      <ConfigProvider theme={{
+        token: {
+          colorPrimary: '#13c2c2',
+        },
+      }}>
         <HashRouter>
           <Header />
           <RouterConainer />
         </HashRouter>
-      </div>
+      </ConfigProvider>
     </div>
   )
 }
