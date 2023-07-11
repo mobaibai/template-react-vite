@@ -1,4 +1,4 @@
-# React-Vite-Ts-Unocss-Template
+# React-Vite-Ts-Tailwind-Template
 
 ### Use
 
