@@ -6,11 +6,9 @@ interface Props {
   title?: string
 }
 const Home: React.FC<Props> = (props) => {
-  if (props.title)
-document.title = props.title
-  const countInc = useCountStore(state => state.inc)
-  const countCut = useCountStore(state => state.cut)
-  const count = useCountStore(state => state.count)
+  if (props.title) document.title = props.title
+
+  const [countInc, countCut, count] = useCountStore(state => [state.inc, state.cut, state.count])
   const countStyles = useSpring({
     from: { transform: 'rotateZ(0)' },
     loop: { transform: 'rotateZ(360deg)' },
