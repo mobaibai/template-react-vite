@@ -21,6 +21,22 @@ export const createItem = (attrs?: Partial<ItemType>): ItemType => {
 }
 
 /**
+ * @description: 创建回包Obj
+ * @param {Partial} attrs
+ * @param {array} rest
+ * @return {type}
+ */
+export const createResponseObj = ({ ...rest }, attrs: Partial<ItemType>) => {
+  return {
+    code: 200,
+    data: {
+      data: createItem(attrs),
+      query: { ...rest },
+    },
+  }
+}
+
+/**
  * @description: 创建List
  * @param {number} num
  * @param {Partial} attrs
@@ -37,7 +53,7 @@ export const createList = (num: number, attrs?: Partial<any[] | ItemType>): Item
  * @param {Partial} attrs 回包
  * @return {type}
  */
-export const createListResponse = ({ page = 1, per = 10, total_page = 0, ...rest }, attrs?: Partial<any>): DataType<ResponseDataType> => {
+export const createResponseList = ({ page = 1, per = 10, total_page = 0, ...rest }, attrs?: Partial<any>): DataType<ResponseDataType> => {
   const sendTotalPage = (page - 1) * per
   const left = total_page - sendTotalPage
 
