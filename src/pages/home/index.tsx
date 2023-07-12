@@ -1,5 +1,7 @@
 import { Button } from 'antd'
 import { animated, useSpring } from '@react-spring/web'
+import { useAjax } from '@/lib/ajax'
+import useSWR from 'swr'
 import { useCountStore } from '@/stores/useCountStore'
 
 interface Props {
@@ -9,6 +11,17 @@ const Home: React.FC<Props> = (props) => {
   if (props.title) document.title = props.title
 
   const [countInc, countCut, count] = useCountStore(state => [state.inc, state.cut, state.count])
+
+  const { get } = useAjax({ showLoading: true, handleError: true })
+  // 获取类型列表
+  const { data: testData, error: testError, isLoading: testIsLoading } = useSWR('/api/test/list', async path => {
+    const res = await get<DataType<ResponseDataListType>>(path)
+    if (res.data && res.data.code && res.data.code === 200) {
+      return res.data.data
+    }
+  })
+  console.log('testData', testData)
+
   const countStyles = useSpring({
     from: { transform: 'rotateZ(0)' },
     loop: { transform: 'rotateZ(360deg)' },
