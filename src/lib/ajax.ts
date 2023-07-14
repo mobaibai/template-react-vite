@@ -1,9 +1,10 @@
 import type { AxiosError, AxiosRequestConfig } from "axios"
 import axios from "axios"
 import { useLoadingStore } from "@/stores"
+import { BaseConfig } from "@/config/base"
 
 // 静态配置项直接用 defaults 配置
-axios.defaults.baseURL = isDev ? "/" : "/"
+axios.defaults.baseURL = BaseConfig.API_BASE_URL
 axios.defaults.headers.post["Content-Type"] = "application/json"
 axios.defaults.timeout = 1000
 
