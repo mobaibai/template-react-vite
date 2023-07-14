@@ -1,7 +1,7 @@
 import Home from "@/pages/home"
 import Video from "@/pages/video"
 
-export interface RouterConfigItemType {
+export interface RouteType {
   key: string
   to: string
   path: string
@@ -9,8 +9,8 @@ export interface RouterConfigItemType {
   element: React.ComponentType<any>
 }
 export interface RouterConfigType {
-  Home: RouterConfigItemType
-  Video: RouterConfigItemType
+  Home: RouteType
+  Video: RouteType
 }
 export const RouterConfig: RouterConfigType = {
   Home: {
@@ -28,13 +28,3 @@ export const RouterConfig: RouterConfigType = {
     element: Video,
   },
 }
-
-export interface RouteItemType {
-  path: string
-  name: string
-  element: React.ComponentType<any>
-}
-export const RouterArr: RouteItemType[] = [
-  { path: RouterConfig.Home.path, name: RouterConfig.Home.name, element: RouterConfig.Home.element },
-  { path: RouterConfig.Video.path, name: RouterConfig.Video.name, element: RouterConfig.Video.element },
-]

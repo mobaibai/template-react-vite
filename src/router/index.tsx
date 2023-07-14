@@ -1,15 +1,18 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { RouterArr } from '@/config/router'
+import type { RouteType } from '@/config/router'
+import { RouterConfig } from '@/config/router'
+
+export const RouterArr: RouteType[] = Object.values(RouterConfig)
 
 const RouterContainer = () => {
   return <>
     <Routes>
       {
-        RouterArr.map((route, index) => {
+        RouterArr.map((route: RouteType) => {
           return (
             route.element && (
-              <Route key={index} path={route.path} element={<route.element title={route.name} />} />
+              <Route key={route.key} path={route.path} element={<route.element title={route.name} />} />
             )
           )
         })
