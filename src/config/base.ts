@@ -15,10 +15,18 @@ interface BaseConfigType {
   API_BASE_URL: string
   API_RESOURCE_URL: string
 }
+/**
+ * @description: 测试地址
+ * @return {type}
+ */
 const development: BaseConfigType = {
   API_BASE_URL: `/`, // 基本地址
   API_RESOURCE_URL: `/`, // 资源地址
 }
+/**
+ * @description: 生产地址
+ * @return {type}
+ */
 const production: BaseConfigType = {
   API_BASE_URL: `${ORIGIN}`,
   API_RESOURCE_URL: `${ORIGIN}`,
