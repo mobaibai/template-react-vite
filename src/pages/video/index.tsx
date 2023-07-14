@@ -1,3 +1,5 @@
+import { Button } from 'antd'
+
 interface Props {
   title?: string
 }
@@ -6,7 +8,7 @@ const Video: React.FC<Props> = (props) => {
 
   return (
     <div className="video-container p-[20px]">
-      Video
+      <Button type="primary">Video</Button>
     </div>
   )
 }

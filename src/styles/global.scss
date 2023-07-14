@@ -1,5 +1,7 @@
+$themePrimary: #13c2c2;
+
 :root {
-  --theme-primary: "#13c2c2";
+  --theme-primary: $themePrimary;
 }
 
 html {
@@ -10,4 +12,8 @@ html {
   fill: currentColor;
   width: 1.2em;
   height: 1.2em;
+}
+
+:where(.css-dev-only-do-not-override-smy3mz).ant-btn-primary {
+  background-color: $themePrimary !important;
 }
