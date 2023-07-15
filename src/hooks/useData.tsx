@@ -3,10 +3,17 @@ import { useAjax } from '@/lib/ajax'
 
 interface Props {
   method: "get" | "post"
-  path: string
+  path: string | undefined
   params: JSONValue
 }
-export const useData = ({ method, path, params }: Props) => {
+/**
+ * @description: 设置数据
+ * @param {type} method 请求方式
+ * @param {type} path 请求地址
+ * @param {type} params 请求参数
+ * @return {type}
+ */
+export const useData = ({ method = 'get', path, params = {} }: Props) => {
   const { get, post } = useAjax({ showLoading: true, handleError: true })
   const { data, mutate, isLoading, isValidating, error } = useSWR<DataType<ResponseDataListType | ItemType>>(
     path,
