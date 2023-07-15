@@ -7,12 +7,12 @@ type RequestQueryType = {
 }
 
 type ItemType = {
-  id: string | number
+  id?: string | number
 }
 
 type ResponseDataListType = {
   list: ItemType[]
-  query: T
+  query: E
   pages: {
     page: number
     per: number
@@ -20,7 +20,7 @@ type ResponseDataListType = {
   }
 }
 
-type DataType<ResponseDataListType> = {
+type DataType<R> = {
   code: number
-  data: ResponseDataListType
+  data: E
 }
