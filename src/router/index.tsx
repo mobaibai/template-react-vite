@@ -1,23 +1,63 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
-import type { RouteType } from '@/config/router'
-import { RouterConfig } from '@/config/router'
+import React, { Suspense } from 'react'
+import { Navigate, Route, Routes, useRoutes } from 'react-router-dom'
+import type { RouteType } from './config'
+import { RouteItems } from './config'
 
-export const RouterArr: RouteType[] = Object.values(RouterConfig)
+const Loading = () => (
+  <>
+    <div className='loadsvg'>
+      <div>
+        loading...
+      </div>
+    </div>
+  </>
+)
+
+const RouterViews = (routerItems: RouteType[]) => {
+  if (routerItems && routerItems.length) {
+    return routerItems.map(({ path, Component, children, redirect }) => {
+      return children && children.length
+        ?
+        (
+          <Route path={path} key={path} element={
+            <Suspense fallback={<Loading />}>
+              <Component />
+            </Suspense>}>
+            {RouterViews(children)}
+            {
+              redirect
+                ?
+                (
+                  <Route path={path} element={
+                    <Navigate to={redirect} />
+                  } />
+                )
+                :
+                (
+                  <Route path={path} element={
+                    <Navigate to={children[0].path} />
+                  } />
+                )
+            }
+          </Route>
+        )
+        :
+        (
+          <Route key={path} path={path} element={
+            <Suspense fallback={<Loading />}>
+              <Component />
+            </Suspense>
+          }>
+          </Route>
+        )
+    })
+  }
+}
 
 const RouterContainer = () => {
   return <>
     <Routes>
-      {
-        RouterArr.map((route: RouteType) => {
-          return (
-            route.element && (
-              <Route key={route.key} path={route.path} element={<route.element title={route.name} />} />
-            )
-          )
-        })
-      }
-      <Route path='*' element={<Navigate to="/home" replace />} />
+      {RouterViews(RouteItems)}
     </Routes>
   </>
 }

@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { RouterConfig } from '@/config/router'
 
 const menuItems: MenuProps['items'] = [
   {
-    label: (<NavLink to={RouterConfig.Home.to}>{RouterConfig.Home.name}</NavLink>),
-    key: RouterConfig.Home.key,
+    label: (<NavLink to={'/home'}>{'首页'}</NavLink>),
+    key: '/home',
   },
   {
-    label: (<NavLink to={RouterConfig.Video.to}>{RouterConfig.Video.name}</NavLink>),
-    key: RouterConfig.Video.key,
+    label: (<NavLink to={'/video'}>{'视频'}</NavLink>),
+    key: '/video',
   },
 ]
 interface Props { }
