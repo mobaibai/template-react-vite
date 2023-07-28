@@ -1,4 +1,8 @@
-import { Suspense, lazy } from "react"
+import { lazy } from "react"
+import { LayoutPage } from "@/layout"
+import { Home, HomeSkeleton } from "@/pages/home"
+import { Play1Skeleton } from "@/pages/video/play1"
+import { Play2Skeleton } from "@/pages/video/play2"
 
 export interface RouteType {
   key?: string
@@ -7,37 +11,51 @@ export interface RouteType {
   redirect?: string
   roles?: string[]
   name?: string
-  Component: any
+  Element: React.LazyExoticComponent<React.FC<any>> | React.FC<any>
+  Skeleton?: React.FC<any>
   children?: RouteType[]
 }
 
 export const RouteItems: RouteType[] = [
   {
-    path: "/home",
-    redirect: "/home",
-    roles: ["USER_ROLES.ADMIN, USER_ROLES.TEST"],
-    Component: lazy(() => import("@/pages/home")),
-  },
-  {
-    path: "/video",
-    redirect: "/video",
-    roles: ["USER_ROLES.ADMIN"],
-    Component: lazy(() => import("@/pages/video")),
+    path: "/",
+    Element: LayoutPage,
     children: [
       {
-        path: "play1",
-        roles: ["USER_ROLES.ADMIN"],
-        Component: lazy(() => import("@/pages/video/play1")),
+        name: "首页",
+        path: "home",
+        redirect: "home",
+        roles: ["USER_ROLES.ADMIN, USER_ROLES.TEST"],
+        Element: Home,
+        Skeleton: HomeSkeleton,
       },
       {
-        path: "play2",
+        name: "视频",
+        path: "video",
+        redirect: "video",
         roles: ["USER_ROLES.ADMIN"],
-        Component: lazy(() => import("@/pages/video/play2")),
+        Element: lazy(() => import("@/pages/video")),
+        children: [
+          {
+            name: "播放1",
+            path: "play1",
+            roles: ["USER_ROLES.ADMIN"],
+            Element: lazy(() => import("@/pages/video/play1")),
+            Skeleton:Play1Skeleton
+          },
+          {
+            name: "播放2",
+            path: "play2",
+            roles: ["USER_ROLES.ADMIN"],
+            Element: lazy(() => import("@/pages/video/play2")),
+            Skeleton:Play2Skeleton
+          },
+        ],
       },
     ],
   },
   {
     path: "*",
-    Component: lazy(() => import("@/pages/404")),
+    Element: lazy(() => import("@/pages/404")),
   },
 ]

@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button, Skeleton } from 'antd'
 import { animated, useSpring } from '@react-spring/web'
 import { useCountStore } from '@/stores/useCountStore'
 import { useEffect } from 'react'
@@ -7,7 +7,7 @@ import { useData } from '@/hooks/useData'
 interface Props {
   title?: string
 }
-const Home: React.FC<Props> = (props) => {
+export const Home: React.FC<Props> = (props) => {
   if (props.title) document.title = props.title
 
   const [countInc, countCut, count] = useCountStore(state => [state.inc, state.cut, state.count])
@@ -40,4 +40,11 @@ const Home: React.FC<Props> = (props) => {
     </div>
   )
 }
-export default Home
+
+export const HomeSkeleton = () => {
+  return (
+    <div className='home-skeleton flex justify-center'>
+      <Skeleton active />
+    </div>
+  )
+}

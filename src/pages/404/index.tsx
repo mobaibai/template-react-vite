@@ -6,7 +6,7 @@ const EmptyPage: React.FC<Props> = (props) => {
 
   return (
     <div className='empty-page-container'>
-      404
+      404：当前页面不存在!
     </div>
   )
 }
