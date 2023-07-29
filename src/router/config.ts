@@ -1,8 +1,6 @@
 import { lazy } from "react"
 import { LayoutPage } from "@/layout"
 import { Home, HomeSkeleton } from "@/pages/home"
-import { Play1Skeleton } from "@/pages/video/play1"
-import { Play2Skeleton } from "@/pages/video/play2"
 
 export interface RouteType {
   key?: string
@@ -35,20 +33,21 @@ export const RouteItems: RouteType[] = [
         redirect: "video",
         roles: ["USER_ROLES.ADMIN"],
         Element: lazy(() => import("@/pages/video")),
+        Skeleton: lazy(() => import("@/pages/video/skeleton")),
         children: [
           {
             name: "播放1",
             path: "play1",
             roles: ["USER_ROLES.ADMIN"],
             Element: lazy(() => import("@/pages/video/play1")),
-            Skeleton:Play1Skeleton
+            Skeleton: lazy(() => import("@/pages/video/play1/skeleton")),
           },
           {
             name: "播放2",
             path: "play2",
             roles: ["USER_ROLES.ADMIN"],
             Element: lazy(() => import("@/pages/video/play2")),
-            Skeleton:Play2Skeleton
+            Skeleton: lazy(() => import("@/pages/video/play2/skeleton")),
           },
         ],
       },

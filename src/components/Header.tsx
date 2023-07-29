@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
+import { ItemType } from 'antd/es/menu/hooks/useItems'
 
 const menuItems: MenuProps['items'] = [
   {
@@ -19,7 +20,11 @@ export const Header: React.FC<Props> = () => {
   const [menuCurrent, setMenuCurrent] = useState<string>(location.pathname)
 
   useEffect(() => {
-    setMenuCurrent(location.pathname)
+    menuItems.forEach((item: ItemType | any) => {
+      if (location.pathname.includes(item.key)) {
+        setMenuCurrent(item.key)
+      }
+    })
   }, [location.pathname])
 
   return (

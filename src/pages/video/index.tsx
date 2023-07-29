@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button, Skeleton } from 'antd'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 

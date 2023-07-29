@@ -43,7 +43,7 @@ export const Home: React.FC<Props> = (props) => {
 
 export const HomeSkeleton = () => {
   return (
-    <div className='home-skeleton flex justify-center'>
+    <div className='home-skeleton p-[20px]'>
       <Skeleton active />
     </div>
   )
