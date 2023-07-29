@@ -8,7 +8,7 @@ const Play1: React.FC<Props> = (props) => {
 
   return (
     <div className='play1-container p-10 flex justify-center'>
-      Play1
+      列表
     </div>
   )
 }
