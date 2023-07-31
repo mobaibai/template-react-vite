@@ -16,7 +16,7 @@ const Video: React.FC<Props> = (props) => {
   const { popup, show, hide } = usePopup({
     children: (
       <div className='popup-content'>
-        弹窗内容
+        这是一个全局弹窗
       </div>
     )
   })
@@ -41,7 +41,7 @@ const Video: React.FC<Props> = (props) => {
           buttonList.map((item, index) => (
             <div key={nanoid()} className="nav-item">
               <Button type={location.pathname === item ? 'primary' : 'default'} onClick={() => onClickButton(item)}>
-                {index === 0 ? '列表' : '弹窗'}
+                {index === 0 ? '导航跟随' : '全局弹窗'}
               </Button>
             </div>
           ))

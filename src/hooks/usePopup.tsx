@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { lazy, useState } from "react"
 import ReactDOM from "react-dom"
-import { rootDiv } from "../main"
-import { Popup, PopupType } from "@/components/Popup"
+import { PopupType } from "@/components/Popup"
+
+const Popup = lazy(() => import('@/components/Popup'))
 
 export const usePopup = (options: PopupType) => {
   const { isOpen = false, title, maskClosable, width, className, style, children } = options
@@ -9,7 +10,7 @@ export const usePopup = (options: PopupType) => {
   const popup = ReactDOM.createPortal(<Popup isOpen={open} title={title} maskClosable={maskClosable} width={width} className={className} style={style} onCancel={() => setOpen(false)} >
     {children}
   </Popup>,
-    rootDiv
+    document.getElementById('root') as HTMLElement
   )
   return {
     popup,
