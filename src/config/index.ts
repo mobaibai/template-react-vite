@@ -3,7 +3,7 @@ import ORIGIN from "../../public/origin"
  * @description: 项目名
  * @return {type}
  */
-export const AppName: string = "APP_NAME"
+export const APP_NAME: string = "APP_NAME"
 
 /**
  * @description: 主题色

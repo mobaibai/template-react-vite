@@ -1,4 +1,4 @@
-import { AppName } from "@/config/base"
+import { APP_NAME } from "@/config"
 import { create } from "zustand"
 
 interface Loading {
@@ -56,10 +56,10 @@ export const useLoginStore = create<Login>(set => ({
   userData: { uid: "", localstore: "", nickname: "", realname: "", avatar: "", phone: "", token: "" },
   setUserData: (userData: UserData) => {
     set({ userData })
-    window.localStorage.setItem(`${AppName}_UserData`, JSON.stringify(userData))
+    window.localStorage.setItem(`${APP_NAME}_UserData`, JSON.stringify(userData))
   },
   removeUserData: () => {
     set({ userData: { uid: "", localstore: "", nickname: "", realname: "", avatar: "", phone: "", token: "" } })
-    window.localStorage.removeItem(`${AppName}_UserData`)
+    window.localStorage.removeItem(`${APP_NAME}_UserData`)
   },
 }))

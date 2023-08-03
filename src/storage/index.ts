@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js"
-import { AppName } from "@/config/base"
+import { APP_NAME } from "@/config"
 
 // 十六位十六进制数作为密钥
 const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161")
@@ -8,14 +8,14 @@ const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a")
 
 // 类型 window.localStorage, window.sessionStorage,
 interface ConfigType {
-  type: string
-  prefix: string | undefined
-  expire: number
-  isEncrypt: boolean
+  type?: "localStorage" | "sessionStorage"
+  prefix?: string | undefined
+  expire?: number
+  isEncrypt?: boolean
 }
 const config: ConfigType = {
   type: "localStorage", // 本地默认存储类型 localStorage
-  prefix: AppName, // 名称前缀: 项目名 + 版本
+  prefix: APP_NAME, // 名称前缀: 项目名 + 版本
   expire: 0, // 过期时间 单位：秒
   isEncrypt: !isDev, // 默认加密 可设置开发环境与生产环境
 }
@@ -30,19 +30,19 @@ export function isSupportStorage() {
 
 /**
  * @description: 设置 setStorage
- * @param {string} key 键名
- * @param {T} value 键值
+ * @param {string} key
+ * @param {T} value 值
  * @param {type} expire 过期时间(秒)
+ * @param {type} type 类型
  * @return {type}
  */
-export function setStorage<T>(key: string, value: T | null, expire = 0) {
+export function setStorage<T>(key: string, value: T | null, { expire = 0, type = "localStorage" }: ConfigType = {}) {
   if (value === "" || value === null || value === undefined) {
     value = null
   }
 
   if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number")
 
-  expire = expire || config.expire
   const data = {
     value, // 存储值
     time: Date.now() / 1000, // 存值时间戳
@@ -51,23 +51,24 @@ export function setStorage<T>(key: string, value: T | null, expire = 0) {
 
   const encryptString = config.isEncrypt ? encrypt(JSON.stringify(data)) : JSON.stringify(data)
 
-  window.localStorage.setItem(autoAddPrefix(key), encryptString)
+  window[type].setItem(autoAddPrefix(key), encryptString)
 }
 
 /**
  * @description: 获取 getStorage
- * @param {string} key 键名
+ * @param {string} key
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function getStorage(key: string) {
+export function getStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
   key = autoAddPrefix(key)
   // key 不存在判断
-  if (!window.localStorage.getItem(key) || JSON.stringify(window.localStorage.getItem(key)) === "null") {
+  if (!window[type].getItem(key) || JSON.stringify(window[type].getItem(key)) === "null") {
     return null
   }
 
   // 优化 持续使用中续期
-  const item = window.localStorage.getItem(key)
+  const item = window[type].getItem(key)
   const storage: Storage = config.isEncrypt ? JSON.parse(decrypt(item ?? "")) : JSON.parse(item ?? "")
 
   const nowTime = Date.now() / 1000
@@ -112,32 +113,35 @@ export function getStorageKeys() {
 /**
  * @description: 根据索引获取key
  * @param {number} index
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function getStorageForIndex(index: number) {
-  return window.localStorage.key(index)
+export function getStorageForIndex(index: number, { type = "localStorage" }: ConfigType = {}) {
+  return window[type].key(index)
 }
 
 /**
  * @description: 获取localStorage长度
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function getStorageLength() {
-  return window.localStorage.length
+export function getStorageLength({ type = "localStorage" }: ConfigType = {}) {
+  return window[type].length
 }
 
 /**
  * @description: 获取全部 getAllStorage
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function getStorageAll() {
-  const len = window.localStorage.length // 获取长度
+export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
+  const len = window[type].length // 获取长度
   const arr = [] // 定义数据集
   for (let i = 0; i < len; i++) {
     // 获取key 索引从0开始
-    const getKey = window.localStorage.key(i)
+    const getKey = window[type].key(i)
     // 获取key对应的值
-    const getVal = getKey === null ? "" : window.localStorage.getItem(getKey)
+    const getVal = getKey === null ? "" : window[type].getItem(getKey)
     // 放进数组
     arr[i] = { key: getKey, val: getVal }
   }
@@ -147,18 +151,20 @@ export function getStorageAll() {
 /**
  * @description: 删除 removeStorage
  * @param {string} key
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function removeStorage(key: string) {
-  window.localStorage.removeItem(autoAddPrefix(key))
+export function removeStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
+  window[type].removeItem(autoAddPrefix(key))
 }
 
 /**
  * @description: 清空 clearStorage
+ * @param {type} type 存储类型
  * @return {type}
  */
-export function clearStorage() {
-  window.localStorage.clear()
+export function clearStorage({ type = "localStorage" }: ConfigType = {}) {
+  window[type].clear()
 }
 
 /**
