@@ -79,9 +79,19 @@ export function getStorage(key: string, { type = "localStorage" }: ConfigType = 
     return null
   } else {
     // 未过期期间被调用 则自动续期 进行保活
-    setStorage(autoRemovePrefix(key), storage.value, storage.expire)
+    setStorage(autoRemovePrefix(key), storage.value, { expire: storage.expire })
     return storage.value
   }
+}
+
+/**
+ * @description: 删除 removeStorage
+ * @param {string} key
+ * @param {type} type 存储类型
+ * @return {type}
+ */
+export function removeStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
+  window[type].removeItem(autoAddPrefix(key))
 }
 
 /**
@@ -146,16 +156,6 @@ export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
     arr[i] = { key: getKey, val: getVal }
   }
   return arr
-}
-
-/**
- * @description: 删除 removeStorage
- * @param {string} key
- * @param {type} type 存储类型
- * @return {type}
- */
-export function removeStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
-  window[type].removeItem(autoAddPrefix(key))
 }
 
 /**
