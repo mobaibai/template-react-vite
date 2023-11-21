@@ -1,4 +1,5 @@
 import path from 'node:path'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -7,19 +8,19 @@ import { svgsprites } from './vite_plugins/svgsprites'
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   define: {
-    isDev: command === 'serve',
+    isDev: command === 'serve'
   },
 
-  plugins: [react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],
+  plugins: [UnoCSS(), react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],
 
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': path.resolve(__dirname, './src')
+    }
   },
 
   server: {
-    open: true,
+    open: true
   },
 
   base: './',
@@ -29,8 +30,8 @@ export default defineConfig(({ command }) => ({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true,
-      },
-    },
-  },
+        drop_debugger: true
+      }
+    }
+  }
 }))
