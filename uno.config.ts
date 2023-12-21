@@ -1,10 +1,11 @@
-import { defineConfig } from 'unocss'
+import { defineConfig, presetUno, presetIcons } from 'unocss'
 
 export default defineConfig({
+  presets: [presetUno(), presetIcons()],
   shortcuts: [
     {
       'border-base': 'border border-gray-500_10',
-      'center': 'flex justify-center items-center'
+      center: 'flex justify-center items-center'
     }
   ],
   theme: {

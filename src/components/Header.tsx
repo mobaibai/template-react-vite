@@ -10,8 +10,8 @@ const menuItems: MenuProps['items'] = [
     key: '/home',
   },
   {
-    label: (<NavLink to={'/video'}>{'视频'}</NavLink>),
-    key: '/video',
+    label: (<NavLink to={'/components'}>{'组件'}</NavLink>),
+    key: '/components',
   },
 ]
 interface Props { }

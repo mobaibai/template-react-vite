@@ -11,7 +11,7 @@ const navList2: Array<NavItem> = [{ id: '-1', name: '全部' }, { id: '1', name:
 interface Props {
   title?: string
 }
-const Play1: React.FC<Props> = (props) => {
+export const Nav: React.FC<Props> = (props) => {
   if (props.title) document.title = props.title
 
   /**
@@ -24,19 +24,10 @@ const Play1: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className='play1-container p-10 flex justify-center'>
+    <div className='nav-container p-10 flex justify-center'>
       <NavFollow list={navList1} navItemName="fruit" followType="bg" size="large" onClickNavItemHandler={onClickNavItemHandler} />
       <NavFollow list={navList2} navItemName="name" color="#eb2f96" onClickNavItemHandler={onClickNavItemHandler} />
     </div>
   )
 }
-export default Play1
-
-export const Play1Skeleton = () => {
-  return (
-    <div className='play1-skeleton flex justify-center'>
-      <Skeleton.Button active />
-      <Skeleton.Button active />
-    </div>
-  )
-}
+export default Nav

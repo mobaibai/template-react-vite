@@ -16,45 +16,52 @@ export interface RouteType {
 
 export const RouteItems: RouteType[] = [
   {
-    path: "/",
+    path: '/',
     Element: LayoutPage,
     children: [
       {
-        name: "首页",
-        path: "home",
-        redirect: "home",
-        roles: ["USER_ROLES.ADMIN, USER_ROLES.TEST"],
+        name: '首页',
+        path: 'home',
+        redirect: 'home',
+        roles: ['USER_ROLES.ADMIN, USER_ROLES.TEST'],
         Element: Home,
-        Skeleton: HomeSkeleton,
+        Skeleton: HomeSkeleton
       },
       {
-        name: "视频",
-        path: "video",
-        redirect: "video",
-        roles: ["USER_ROLES.ADMIN"],
-        Element: lazy(() => import("@/pages/video")),
-        Skeleton: lazy(() => import("@/pages/video/skeleton")),
+        name: '组件',
+        path: 'components',
+        redirect: 'components',
+        roles: ['USER_ROLES.ADMIN'],
+        Element: lazy(() => import('@/pages/components')),
+        Skeleton: lazy(() => import('@/pages/components/skeleton')),
         children: [
           {
-            name: "播放1",
-            path: "play1",
-            roles: ["USER_ROLES.ADMIN"],
-            Element: lazy(() => import("@/pages/video/play1")),
-            Skeleton: lazy(() => import("@/pages/video/play1/skeleton")),
+            name: '跟随导航',
+            path: 'nav',
+            roles: ['USER_ROLES.ADMIN'],
+            Element: lazy(() => import('@/pages/components/nav')),
+            Skeleton: lazy(() => import('@/pages/components/nav/skeleton'))
           },
           {
-            name: "播放2",
-            path: "play2",
-            roles: ["USER_ROLES.ADMIN"],
-            Element: lazy(() => import("@/pages/video/play2")),
-            Skeleton: lazy(() => import("@/pages/video/play2/skeleton")),
+            name: '弹窗',
+            path: 'modal',
+            roles: ['USER_ROLES.ADMIN'],
+            Element: lazy(() => import('@/pages/components/modal')),
+            Skeleton: lazy(() => import('@/pages/components/modal/skeleton'))
           },
-        ],
-      },
-    ],
+          {
+            name: '图标',
+            path: 'icons',
+            roles: ['USER_ROLES.ADMIN'],
+            Element: lazy(() => import('@/pages/components/icons')),
+            Skeleton: lazy(() => import('@/pages/components/icons/skeleton'))
+          }
+        ]
+      }
+    ]
   },
   {
-    path: "*",
-    Element: lazy(() => import("@/pages/404")),
-  },
+    path: '*',
+    Element: lazy(() => import('@/pages/404'))
+  }
 ]

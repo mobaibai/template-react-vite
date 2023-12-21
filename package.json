@@ -29,6 +29,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.4",
     "@faker-js/faker": "^7.6.0",
+    "@iconify/json": "^2.2.159",
     "@types/crypto-js": "^4.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
