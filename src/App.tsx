@@ -12,12 +12,14 @@ vhCheck()
 
 function App() {
   return (
-    <div className="App">
-      <ConfigProvider theme={{
-        token: {
-          colorPrimary: ThemePrimary,
-        },
-      }}>
+    <div className='App'>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: ThemePrimary
+          }
+        }}>
+        <div className={`absolute w-15% h-15% rounded-50% top-10% left-10% transform-translate--50% filter-blur-6rem rainbow-bgc`} />
         <HashRouter>
           <Header />
           <RouterConainer />

@@ -29,10 +29,10 @@ export const Home: React.FC<Props> = (props) => {
   })
 
   return (
-    <div className="home-container p-10">
-      <div className="count-action flex items-center justify-center">
+    <div className='home-container p-10'>
+      <div className='count-action flex items-center justify-center rainbow-text'>
         <Button onClick={countCut}>-</Button>
-        <animated.div className='count-view mx-5' style={{ ...countStyles }} text="center 30px slate-600">
+        <animated.div className='count-view mx-5' style={{ ...countStyles }} text='center 30px'>
           {count}
         </animated.div>
         <Button onClick={countInc}>+</Button>
