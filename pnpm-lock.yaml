@@ -63,6 +63,9 @@ importers:
       '@types/crypto-js':
         specifier: ^4.1.1
         version: 4.2.2
+      '@types/node':
+        specifier: ^20.12.7
+        version: 20.12.7
       '@types/react':
         specifier: ^18.0.28
         version: 18.2.79
@@ -71,7 +74,7 @@ importers:
         version: 18.2.25
       '@vitejs/plugin-react':
         specifier: ^3.1.0
-        version: 3.1.0(vite@5.2.10(sass@1.75.0))
+        version: 3.1.0(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.19(postcss@8.4.38)
@@ -89,13 +92,13 @@ importers:
         version: 5.4.5
       unocss:
         specifier: ^0.58.5
-        version: 0.58.9(postcss@8.4.38)(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))
+        version: 0.58.9(postcss@8.4.38)(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(sass@1.75.0)
+        version: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
       vite-plugin-mock:
         specifier: ^2.9.6
-        version: 2.9.8(mockjs@1.1.0)(vite@5.2.10(sass@1.75.0))
+        version: 2.9.8(mockjs@1.1.0)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
 
 packages:
 
@@ -743,6 +746,9 @@ packages:
 
   '@types/mockjs@1.0.10':
     resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
+
+  '@types/node@20.12.7':
+    resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2900,6 +2906,9 @@ packages:
   unconfig@0.3.13:
     resolution: {integrity: sha512-N9Ph5NC4+sqtcOjPfHrRcHekBCadCXWTBzp2VYYbySOHW0PfD9XLCeXshTXjkPYwLrBr9AtSeU0CZmkYECJhng==}
 
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
   unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
 
@@ -3709,6 +3718,10 @@ snapshots:
 
   '@types/mockjs@1.0.10': {}
 
+  '@types/node@20.12.7':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/prop-types@15.7.12': {}
@@ -3812,13 +3825,13 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@unocss/astro@0.58.9(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))':
+  '@unocss/astro@0.58.9(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))':
     dependencies:
       '@unocss/core': 0.58.9
       '@unocss/reset': 0.58.9
-      '@unocss/vite': 0.58.9(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))
+      '@unocss/vite': 0.58.9(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
     optionalDependencies:
-      vite: 5.2.10(sass@1.75.0)
+      vite: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
     transitivePeerDependencies:
       - rollup
 
@@ -3949,7 +3962,7 @@ snapshots:
     dependencies:
       '@unocss/core': 0.58.9
 
-  '@unocss/vite@0.58.9(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))':
+  '@unocss/vite@0.58.9(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@rollup/pluginutils': 5.1.0(rollup@4.16.4)
@@ -3961,18 +3974,18 @@ snapshots:
       chokidar: 3.6.0
       fast-glob: 3.3.2
       magic-string: 0.30.10
-      vite: 5.2.10(sass@1.75.0)
+      vite: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
     transitivePeerDependencies:
       - rollup
 
-  '@vitejs/plugin-react@3.1.0(vite@5.2.10(sass@1.75.0))':
+  '@vitejs/plugin-react@3.1.0(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.4)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 5.2.10(sass@1.75.0)
+      vite: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -6248,13 +6261,15 @@ snapshots:
       defu: 6.1.4
       jiti: 1.21.0
 
+  undici-types@5.26.5: {}
+
   unist-util-stringify-position@2.0.3:
     dependencies:
       '@types/unist': 2.0.10
 
-  unocss@0.58.9(postcss@8.4.38)(rollup@4.16.4)(vite@5.2.10(sass@1.75.0)):
+  unocss@0.58.9(postcss@8.4.38)(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0)):
     dependencies:
-      '@unocss/astro': 0.58.9(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))
+      '@unocss/astro': 0.58.9(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
       '@unocss/cli': 0.58.9(rollup@4.16.4)
       '@unocss/core': 0.58.9
       '@unocss/extractor-arbitrary-variants': 0.58.9
@@ -6273,9 +6288,9 @@ snapshots:
       '@unocss/transformer-compile-class': 0.58.9
       '@unocss/transformer-directives': 0.58.9
       '@unocss/transformer-variant-group': 0.58.9
-      '@unocss/vite': 0.58.9(rollup@4.16.4)(vite@5.2.10(sass@1.75.0))
+      '@unocss/vite': 0.58.9(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))
     optionalDependencies:
-      vite: 5.2.10(sass@1.75.0)
+      vite: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -6308,7 +6323,7 @@ snapshots:
 
   vh-check@2.0.5: {}
 
-  vite-plugin-mock@2.9.8(mockjs@1.1.0)(vite@5.2.10(sass@1.75.0)):
+  vite-plugin-mock@2.9.8(mockjs@1.1.0)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0)):
     dependencies:
       '@types/mockjs': 1.0.10
       chalk: 4.1.2
@@ -6319,16 +6334,17 @@ snapshots:
       fast-glob: 3.3.2
       mockjs: 1.1.0
       path-to-regexp: 6.2.2
-      vite: 5.2.10(sass@1.75.0)
+      vite: 5.2.10(@types/node@20.12.7)(sass@1.75.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.2.10(sass@1.75.0):
+  vite@5.2.10(@types/node@20.12.7)(sass@1.75.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.16.4
     optionalDependencies:
+      '@types/node': 20.12.7
       fsevents: 2.3.3
       sass: 1.75.0
 
