@@ -1,5 +1,6 @@
 import { Skeleton } from "antd"
 import { NavFollow } from "@/components/NavFollow"
+import { useTitle } from "@/hooks/useTitle"
 
 interface NavItem {
   id: string | number
@@ -12,7 +13,7 @@ interface Props {
   title?: string
 }
 export const Nav: React.FC<Props> = (props) => {
-  if (props.title) document.title = props.title
+  if (props.title) useTitle(props.title)
 
   /**
    * @description: Nav点击处理

@@ -3,12 +3,13 @@ import { animated, useSpring } from '@react-spring/web'
 import { useCountStore } from '@/stores/useCountStore'
 import { useEffect } from 'react'
 import { useData } from '@/hooks/useData'
+import { useTitle } from '@/hooks/useTitle'
 
 interface Props {
   title?: string
 }
 export const Home: React.FC<Props> = (props) => {
-  if (props.title) document.title = props.title
+  if (props.title) useTitle(props.title)
 
   const [countInc, countCut, count] = useCountStore(state => [state.inc, state.cut, state.count])
 

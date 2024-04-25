@@ -1,8 +1,10 @@
+import { useTitle } from "@/hooks/useTitle"
+
 interface Props {
   title?: string
 }
 export const Icons:React.FC<Props> = (props) => {
-  if(props.title) document.title = props.title
+  if(props.title) useTitle(props.title)
 
   return (
     <div className='icons-container p-10 flex justify-center'>

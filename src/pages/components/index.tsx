@@ -2,6 +2,7 @@ import { Button } from 'antd'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { nanoid } from 'nanoid'
 import { usePopup } from '@/hooks/usePopup'
+import { useTitle } from '@/hooks/useTitle'
 
 interface PathItem {
   name: string
@@ -17,7 +18,7 @@ interface Props {
   title?: string
 }
 export const Components: React.FC<Props> = props => {
-  if (props.title) document.title = props.title
+  if (props.title) useTitle(props.title)
   const location = useLocation()
   const navigate = useNavigate()
 

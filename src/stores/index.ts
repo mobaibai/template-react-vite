@@ -1,8 +1,8 @@
-import { APP_NAME } from "@/config"
-import { getStorage, removeStorage, setStorage } from "@/storage"
-import { create } from "zustand"
+import { APP_NAME } from '@/config'
+import { getStorage, removeStorage, setStorage } from '@/storage'
+import { create } from 'zustand'
 
-interface Loading {
+type Loading = {
   loadingOpen: boolean
   setLoadingOpen: (loadingOpen: boolean) => void
 }
@@ -15,10 +15,10 @@ export const useLoadingStore = create<Loading>(set => ({
   loadingOpen: false,
   setLoadingOpen: (loadingOpen: boolean) => {
     set({ loadingOpen })
-  },
+  }
 }))
 
-interface LoginOpen {
+type LoginOpen = {
   loginOpen: boolean
   setLoginOpen: (loginOpen: boolean) => void
 }
@@ -31,10 +31,10 @@ export const useLoginOpenStore = create<LoginOpen>(set => ({
   loginOpen: false,
   setLoginOpen: (loginOpen: boolean) => {
     set({ loginOpen })
-  },
+  }
 }))
 
-interface UserData {
+type UserData = {
   uid: number | string
   localstore: string
   nickname: string
@@ -43,7 +43,7 @@ interface UserData {
   phone: string
   token: string
 }
-interface Login {
+type Login = {
   userData: UserData
   setUserData: (userData: UserData) => void
   removeUserData: () => void
@@ -55,13 +55,13 @@ interface Login {
  */
 export const useLoginStore = create<Login>(set => {
   const initialValue: UserData = {
-    uid: "",
-    localstore: "",
-    nickname: "",
-    realname: "",
-    avatar: "",
-    phone: "",
-    token: "",
+    uid: '',
+    localstore: '',
+    nickname: '',
+    realname: '',
+    avatar: '',
+    phone: '',
+    token: ''
   }
   return {
     userData: getStorage(`${APP_NAME}_UserData`) || initialValue,
@@ -82,6 +82,21 @@ export const useLoginStore = create<Login>(set => {
     removeUserData: () => {
       set({ userData: initialValue })
       removeStorage(`${APP_NAME}_UserData`)
-    },
+    }
   }
 })
+
+type PageTitle = {
+  pageTitle: string
+  setPageTitle: (pageTitle: string) => void
+}
+/**
+ * @description: 页面Title
+ * @param {type} create
+ */
+export const usePageTitle = create<PageTitle>(set => ({
+  pageTitle: '造风者OKR',
+  setPageTitle: (pageTitle: string) => {
+    set({ pageTitle })
+  }
+}))
