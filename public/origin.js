@@ -1,8 +1,12 @@
-const protocol = window.location.protocol.includes('https:') ? 'https' : 'http'
-const host = 'xxx.com'
+const dev = 'xxx.com'
+const prod = 'xxx.com'
+const protocol = window.location.protocol
 /**
  * @description: 可更改Host，方便更换服务器
  * @return {type}
  */
-const ORIGIN = `${protocol}://${host}`
+const ORIGIN = {
+  dev: `${protocol}//${dev}`,
+  prod: `${protocol}//${prod}`
+}
 export default ORIGIN
