@@ -8,7 +8,7 @@ import { svgsprites } from './vite_plugins/svgsprites'
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   define: {
-    isDev: command === 'serve'
+    __isDev__: command === 'serve'
   },
 
   plugins: [UnoCSS(), react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],

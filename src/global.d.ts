@@ -1,4 +1,4 @@
-var isDev: boolean
+const __isDev__: boolean
 
 type JSONValue = string | number | boolean | null | { [k: string]: JSONValue } | JSONValue[]
 

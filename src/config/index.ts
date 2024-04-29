@@ -34,4 +34,4 @@ const production: BaseConfigType = {
  * @description: 请求地址前缀
  * @return {type}
  */
-export const BaseConfig: BaseConfigType = isDev ? development : production
+export const BaseConfig: BaseConfigType = __isDev__ ? development : production
