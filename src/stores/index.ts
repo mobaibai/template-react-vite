@@ -85,18 +85,3 @@ export const useLoginStore = create<Login>(set => {
     }
   }
 })
-
-type PageTitle = {
-  pageTitle: string
-  setPageTitle: (pageTitle: string) => void
-}
-/**
- * @description: 页面Title
- * @param {type} create
- */
-export const usePageTitle = create<PageTitle>(set => ({
-  pageTitle: '造风者OKR',
-  setPageTitle: (pageTitle: string) => {
-    set({ pageTitle })
-  }
-}))
