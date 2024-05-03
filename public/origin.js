@@ -1,4 +1,4 @@
-const dev = 'xxx.com'
+const dev = window.location.host
 const prod = 'xxx.com'
 const protocol = window.location.protocol
 /**
