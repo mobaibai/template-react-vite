@@ -64,7 +64,7 @@ export const useLoginStore = create<Login>(set => {
     token: ''
   }
   return {
-    userData: getStorage(`${APP_NAME}_UserData`) || initialValue,
+    userData: getStorage(`UserData`) || initialValue,
     setUserData: (userData: UserData) => {
       set({ userData })
       // 一小时
@@ -77,11 +77,11 @@ export const useLoginStore = create<Login>(set => {
       const currentSecond: number = Date.now() / 1000
       // 过期时间(秒)
       const expire: number = currentSecond + day1Second
-      setStorage(`${APP_NAME}_UserData`, userData, { expire })
+      setStorage(`UserData`, userData, { expire })
     },
     removeUserData: () => {
       set({ userData: initialValue })
-      removeStorage(`${APP_NAME}_UserData`)
+      removeStorage(`UserData`)
     }
   }
 })
