@@ -9,9 +9,9 @@ interface PathItem {
   path: string
 }
 const pathList: PathItem[] = [
-  { name: '导航跟随', path: '/components/nav' },
-  { name: '全局弹窗', path: '/components/modal' },
-  { name: '图标', path: '/components/icons' }
+  { name: '导航跟随', path: 'nav' },
+  { name: '全局弹窗', path: 'modal' },
+  { name: '图标', path: 'icons' }
 ]
 
 interface Props {

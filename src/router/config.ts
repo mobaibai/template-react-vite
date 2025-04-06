@@ -17,12 +17,12 @@ export interface RouteType {
 export const RouteItems: RouteType[] = [
   {
     path: '/',
+    redirect: 'home',
     Element: LayoutPage,
     children: [
       {
         name: '首页',
         path: 'home',
-        redirect: 'home',
         roles: ['USER_ROLES.ADMIN, USER_ROLES.TEST'],
         Element: Home,
         Skeleton: HomeSkeleton
@@ -30,7 +30,6 @@ export const RouteItems: RouteType[] = [
       {
         name: '组件',
         path: 'components',
-        redirect: 'components',
         roles: ['USER_ROLES.ADMIN'],
         Element: lazy(() => import('@/pages/components')),
         Skeleton: lazy(() => import('@/pages/components/skeleton')),
