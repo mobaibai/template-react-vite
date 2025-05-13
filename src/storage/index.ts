@@ -23,6 +23,8 @@ const config: ConfigType = {
 /**
  * @description: 判断是否支持 Storage
  * @return {type}
+ * @example:
+ * if (isSupportStorage()) console.log("支持 Storage")
  */
 export function isSupportStorage() {
   return typeof Storage !== "undefined"
@@ -35,6 +37,8 @@ export function isSupportStorage() {
  * @param {type} expire 过期时间(秒)
  * @param {type} type 类型
  * @return {type}
+ * @example:
+ * setStorage("key", "data", { expire: 60, type: "localStorage" })
  */
 export function setStorage<T>(key: string, value: T | null, { expire = 0, type = "localStorage" }: ConfigType = {}) {
   if (value === "" || value === null || value === undefined) {
@@ -59,6 +63,8 @@ export function setStorage<T>(key: string, value: T | null, { expire = 0, type =
  * @param {string} key
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * const data = getStorage("key", { type: "localStorage" })
  */
 export function getStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
   key = autoAddPrefix(key)
@@ -89,6 +95,8 @@ export function getStorage(key: string, { type = "localStorage" }: ConfigType = 
  * @param {string} key
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * removeStorage("key", { type: "localStorage" })
  */
 export function removeStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
   window[type].removeItem(autoAddPrefix(key))
@@ -98,6 +106,8 @@ export function removeStorage(key: string, { type = "localStorage" }: ConfigType
  * @description: 是否存在 hasStorage
  * @param {string} key
  * @return {type}
+ * @example:
+ * if (hasStorage("key")) console.log("存在")
  */
 export function hasStorage(key: string) {
   key = autoAddPrefix(key)
@@ -110,6 +120,8 @@ export function hasStorage(key: string) {
 /**
  * @description: 获取所有key
  * @return {type}
+ * @example:
+ * const keys = getStorageKeys()
  */
 export function getStorageKeys() {
   const items = getStorageAll()
@@ -125,6 +137,8 @@ export function getStorageKeys() {
  * @param {number} index
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * const key = getStorageForIndex(0, { type: "localStorage" })
  */
 export function getStorageForIndex(index: number, { type = "localStorage" }: ConfigType = {}) {
   return window[type].key(index)
@@ -134,6 +148,8 @@ export function getStorageForIndex(index: number, { type = "localStorage" }: Con
  * @description: 获取localStorage长度
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * const len = getStorageLength({ type: "localStorage" })
  */
 export function getStorageLength({ type = "localStorage" }: ConfigType = {}) {
   return window[type].length
@@ -143,6 +159,8 @@ export function getStorageLength({ type = "localStorage" }: ConfigType = {}) {
  * @description: 获取全部 getAllStorage
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * const all = getStorageAll({ type: "localStorage" })
  */
 export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
   const len = window[type].length // 获取长度
@@ -162,6 +180,8 @@ export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
  * @description: 清空 clearStorage
  * @param {type} type 存储类型
  * @return {type}
+ * @example:
+ * clearStorage({ type: "localStorage" })
  */
 export function clearStorage({ type = "localStorage" }: ConfigType = {}) {
   window[type].clear()
@@ -171,6 +191,8 @@ export function clearStorage({ type = "localStorage" }: ConfigType = {}) {
  * @description: 名称前自动添加前缀
  * @param {string} key
  * @return {type}
+ * @example:
+ * const key = autoAddPrefix("key")
  */
 function autoAddPrefix(key: string) {
   const prefix = config.prefix ? `${config.prefix}_` : ""
@@ -181,6 +203,8 @@ function autoAddPrefix(key: string) {
  * @description: 移除已添加的前缀
  * @param {string} key
  * @return {type}
+ * @example:
+ * const key = autoRemovePrefix("key")
  */
 function autoRemovePrefix(key: string) {
   const len: number = config.prefix ? config.prefix.length + 1 : 0
@@ -192,6 +216,8 @@ function autoRemovePrefix(key: string) {
  * @description: 加密
  * @param {string} data
  * @return {*}
+ * @example:
+ * const data = encrypt("data")
  */
 function encrypt(data: string) {
   if (typeof data === "object") {
@@ -215,6 +241,8 @@ function encrypt(data: string) {
  * @description: 解密
  * @param {string} data
  * @return {*}
+ * @example:
+ * const data = decrypt("data")
  */
 function decrypt(data: string) {
   const encryptedHexStr = CryptoJS.enc.Hex.parse(data)
