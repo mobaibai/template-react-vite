@@ -20,7 +20,11 @@ function App() {
           }
         }}>
         <div className={`absolute w-15% h-15% rounded-50% top-10% left-10% transform-translate--50% filter-blur-6rem rainbow-bgc`} />
-        <HashRouter>
+        <HashRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true
+          }}>
           <Header />
           <RouterConainer />
         </HashRouter>

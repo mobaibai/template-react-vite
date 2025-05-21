@@ -13,6 +13,14 @@ export default defineConfig(({ command }) => ({
 
   plugins: [UnoCSS(), react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],
 
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
