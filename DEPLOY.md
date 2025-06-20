@@ -40,21 +40,17 @@ git push origin main
 ### 1. 安装依赖
 
 ```bash
-npm install
-# 或
 pnpm install
 ```
 
 ### 2. 执行部署命令
 
 ```bash
-npm run deploy
-# 或
 pnpm deploy
 ```
 
 这个命令会：
-1. 构建项目 (`npm run build`)
+1. 构建项目 (`pnpm run build`)
 2. 将 `dist/` 目录的内容推送到 `gh-pages` 分支
 
 ## 📁 项目配置文件
