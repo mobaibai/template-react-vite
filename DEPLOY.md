@@ -50,23 +50,27 @@ pnpm deploy
 ```
 
 这个命令会：
+
 1. 构建项目 (`pnpm run build`)
 2. 将 `dist/` 目录的内容推送到 `gh-pages` 分支
 
 ## 📁 项目配置文件
 
 ### GitHub Actions 工作流
+
 - **文件位置**: `.github/workflows/deploy.yml`
 - **触发条件**: 推送到 `main` 或 `master` 分支
 - **构建环境**: Ubuntu Latest + Node.js 18
 - **部署目标**: GitHub Pages
 
 ### Vite 配置
+
 - **文件位置**: `vite.config.ts`
 - **生产环境 base**: `/template-react-vite/`
 - **开发环境 base**: `./`
 
 ### Package.json 脚本
+
 - `npm run build`: 构建生产版本
 - `npm run deploy`: 构建并部署到 GitHub Pages
 - `npm run preview`: 本地预览生产构建
@@ -92,18 +96,22 @@ echo "your-domain.com" > public/CNAME
 ## 🐛 常见问题
 
 ### 1. 部署后页面空白
+
 - 检查 `vite.config.ts` 中的 `base` 配置是否正确
 - 确保路径与你的仓库名称匹配
 
 ### 2. 资源文件 404 错误
+
 - 确认 GitHub Pages 已正确启用
 - 检查 Actions 工作流是否成功运行
 
 ### 3. 路由问题（SPA）
+
 - GitHub Pages 默认不支持 SPA 路由
 - 可以在 `public/` 目录添加 `404.html` 重定向到 `index.html`
 
 ### 4. 权限错误
+
 - 确保仓库的 Actions 权限已启用
 - 检查 `GITHUB_TOKEN` 是否有足够的权限
 
