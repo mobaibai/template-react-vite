@@ -39,7 +39,7 @@ export const Components: React.FC<Props> = props => {
   const onClickButton = (item: PathItem) => {
     if (location.pathname !== item.path) {
       navigate(item.path)
-      if (pathList[2].path === item.path) show()
+      if (pathList[1].path === item.path) show()
     }
   }
 
