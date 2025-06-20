@@ -1,17 +1,16 @@
 import path from 'node:path'
-import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { viteMockServe } from 'vite-plugin-mock'
+import react from '@vitejs/plugin-react-swc'
+import UnoCSS from 'unocss/vite'
 import { svgsprites } from './vite_plugins/svgsprites'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig(({ command }) => ({
   define: {
     __isDev__: command === 'serve'
   },
 
-  plugins: [UnoCSS(), react(), viteMockServe(), svgsprites({ noOptimizeList: ['logo'] })],
+  plugins: [UnoCSS(), react(), svgsprites({ noOptimizeList: ['logo'] })],
 
   css: {
     preprocessorOptions: {

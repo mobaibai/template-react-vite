@@ -1,6 +1,6 @@
-import { lazy } from "react"
-import { LayoutPage } from "@/layout"
-import { Home, HomeSkeleton } from "@/pages/home"
+import { LayoutPage } from '@/layout'
+import { Home, HomeSkeleton } from '@/pages/home'
+import React, { lazy } from 'react'
 
 export interface RouteType {
   key?: string
@@ -25,10 +25,10 @@ export const RouteItems: RouteType[] = [
         path: 'home',
         roles: ['USER_ROLES.ADMIN, USER_ROLES.TEST'],
         Element: Home,
-        Skeleton: HomeSkeleton
+        Skeleton: HomeSkeleton,
       },
       {
-        name: '组件',
+        name: '功能组件',
         path: 'components',
         roles: ['USER_ROLES.ADMIN'],
         Element: lazy(() => import('@/pages/components')),
@@ -39,28 +39,35 @@ export const RouteItems: RouteType[] = [
             path: 'nav',
             roles: ['USER_ROLES.ADMIN'],
             Element: lazy(() => import('@/pages/components/nav')),
-            Skeleton: lazy(() => import('@/pages/components/nav/skeleton'))
+            Skeleton: lazy(() => import('@/pages/components/nav/skeleton')),
           },
           {
-            name: '弹窗',
+            name: '全局弹窗',
             path: 'modal',
             roles: ['USER_ROLES.ADMIN'],
             Element: lazy(() => import('@/pages/components/modal')),
-            Skeleton: lazy(() => import('@/pages/components/modal/skeleton'))
+            Skeleton: lazy(() => import('@/pages/components/modal/skeleton')),
           },
           {
-            name: '图标',
+            name: '图标展示',
             path: 'icons',
             roles: ['USER_ROLES.ADMIN'],
             Element: lazy(() => import('@/pages/components/icons')),
-            Skeleton: lazy(() => import('@/pages/components/icons/skeleton'))
-          }
-        ]
-      }
-    ]
+            Skeleton: lazy(() => import('@/pages/components/icons/skeleton')),
+          },
+        ],
+      },
+      {
+        name: '动画展示',
+        path: 'animations',
+        roles: ['USER_ROLES.ADMIN'],
+        Element: lazy(() => import('@/pages/animations')),
+        Skeleton: lazy(() => import('@/pages/animations/skeleton')),
+      },
+    ],
   },
   {
     path: '*',
-    Element: lazy(() => import('@/pages/404'))
-  }
+    Element: lazy(() => import('@/pages/404')),
+  },
 ]

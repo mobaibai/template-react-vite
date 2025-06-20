@@ -1,4 +1,4 @@
-import { defineConfig, presetUno, presetIcons, presetAttributify, presetTypography, toEscapedSelector } from 'unocss'
+import { defineConfig, presetIcons, presetAttributify, presetTypography, toEscapedSelector, presetWind3 } from 'unocss'
 
 export default defineConfig({
   rules: [
@@ -30,7 +30,7 @@ export default defineConfig({
       }
     ]
   ],
-  presets: [presetUno(), presetAttributify(), presetIcons(), presetTypography()],
+  presets: [presetWind3(), presetAttributify(), presetIcons(), presetTypography()],
   shortcuts: [
     {
       center: 'flex justify-center items-center'

@@ -74,7 +74,7 @@ export const useResize = (options: ResizeType = {}) => {
 
   return {
     scale,
-    screenRef
+    screenRef,
   }
 }
 

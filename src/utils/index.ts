@@ -7,7 +7,10 @@
  * const time = formatTime(1672531199000, 'yyyy-MM-dd HH:mm:ss')
  * console.log(time) // 2023-01-01 00:00:00
  */
-export const formatTime = (time: number | string | Date, format: string): string => {
+export const formatTime = (
+  time: number | string | Date,
+  format: string
+): string => {
   if (typeof time === 'string') time = Number(time)
   if (typeof time !== 'number' || Number.isNaN(time)) return ''
   if (!format) format = 'yyyy-MM-dd HH:mm:ss'

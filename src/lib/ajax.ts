@@ -1,7 +1,7 @@
+import { BaseApi } from '@/config'
+import { useLoadingStore } from '@/stores'
 import type { AxiosError, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
-import { useLoadingStore } from '@/stores'
-import { BaseApi } from '@/config'
 
 // 静态配置项直接用 defaults 配置
 axios.defaults.baseURL = BaseApi.API_BASE_URL
@@ -40,7 +40,7 @@ export const useAjax = (options?: Options) => {
     },
     unknown: () => {
       window.alert('未知错误')
-    }
+    },
   }
   const showLoading = options?.showLoading || false
   const handleError = options?.handleError ?? true
@@ -69,12 +69,16 @@ export const useAjax = (options?: Options) => {
           }
         })
     },
-    post: <T>(path: string, data: JSONValue) => {
+    post: <T>(
+      path: string,
+      data: JSONValue,
+      config?: AxiosRequestConfig<any>
+    ) => {
       if (showLoading) {
         setLoadingOpen(true)
       }
       return axios
-        .post<T>(path, data)
+        .post<T>(path, data, config)
         .catch(onError)
         .finally(() => {
           if (showLoading) {
@@ -83,7 +87,7 @@ export const useAjax = (options?: Options) => {
         })
     },
     patch: () => {},
-    delete: () => {}
+    delete: () => {},
   }
   return ajax
 }

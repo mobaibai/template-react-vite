@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { nanoid } from 'nanoid'
 import { Empty } from 'antd'
+import { nanoid } from 'nanoid'
+import { useEffect, useRef, useState } from 'react'
 
 interface NavFollowProps<T> {
   list: Array<T>
@@ -28,17 +28,25 @@ export const NavFollow: React.FC<NavFollowProps<any>> = ({
   size = 'default',
   followType = 'border',
   color = 'var(--theme-primary)',
-  onClickNavItemHandler = () => {}
+  onClickNavItemHandler = () => {},
 }) => {
   const [navIndex, useNavIndex] = useState<number>(0)
   const navIndexRef = useRef<number>(0)
   const followItemRef = useRef<HTMLDivElement>(null)
   const navItemRefs = list.map(() => useRef<HTMLDivElement>(null))
 
-  const fontSize = size === 'small' ? 'text-[12px]' : size === 'default' ? 'text-[14px]' : 'text-[16px]'
+  const fontSize =
+    size === 'small'
+      ? 'text-[12px]'
+      : size === 'default'
+        ? 'text-[14px]'
+        : 'text-[16px]'
   const borderHeight =
-    (size === 'small' ? 'border-b-[3px]' : size === 'default' ? 'border-b-[4px]' : 'border-b-[5px]') + ' border-solid border-t-0 border-l-0 border-r-0'
-  const borderColor = `border-[${color}]`
+    (size === 'small'
+      ? 'border-b-[3px]'
+      : size === 'default'
+        ? 'border-b-[4px]'
+        : 'border-b-[5px]') + ' border-solid border-t-0 border-l-0 border-r-0'
 
   useEffect(() => {
     navAssignment()
@@ -74,9 +82,15 @@ export const NavFollow: React.FC<NavFollowProps<any>> = ({
    */
   const navAssignment = () => {
     const navItem = navItemRefs[navIndexRef?.current]?.current
-    const width = followType === 'bg' ? navItem?.offsetWidth : navItem && navItem?.offsetWidth - 20 * 2
+    const width =
+      followType === 'bg'
+        ? navItem?.offsetWidth
+        : navItem && navItem?.offsetWidth - 20 * 2
     const height = navItem?.offsetHeight
-    const left = followType === 'bg' ? navItem?.offsetLeft : navItem && navItem?.offsetLeft + 20
+    const left =
+      followType === 'bg'
+        ? navItem?.offsetLeft
+        : navItem && navItem?.offsetLeft + 20
     const top = navItem?.offsetTop
     const followItem = followItemRef.current
     if (followItem) {
@@ -88,24 +102,27 @@ export const NavFollow: React.FC<NavFollowProps<any>> = ({
   }
 
   return (
-    <div className='follow-nav-component'>
-      <div className='nav-list flex flex-wrap relative'>
+    <div className="follow-nav-component">
+      <div className="nav-list flex flex-wrap relative">
         {list && list.length ? (
           list.map((item: any, index: number) => (
             <div
               key={nanoid()}
               ref={navItemRefs[index]}
               className={`nav-item z-10 mr-[12px] mb-[20px] px-[20px] py-[8px] rounded-md ${fontSize} transition-all duration-200 ${
-                navIndex === index ? `font-bold` : `text-gray-600 hover:text-gray-800 hover:font-bold hover:cursor-pointer`
+                navIndex === index
+                  ? `font-bold`
+                  : `text-gray-600 hover:text-gray-800 hover:font-bold hover:cursor-pointer`
               }`}
               onClick={() => onClickNav(index)}
-              style={{ color: `${navIndex === index ? color : ''}` }}>
+              style={{ color: `${navIndex === index ? color : ''}` }}
+            >
               {item[navItemName]}
             </div>
           ))
         ) : (
-          <div className='empty pt-[40px]'>
-            <Empty description='暂无数据...' />
+          <div className="empty pt-[40px]">
+            <Empty description="暂无数据..." />
           </div>
         )}
         <div

@@ -11,7 +11,7 @@ interface BaseApiType {
  */
 const development: BaseApiType = {
   API_BASE_URL: `${protocol}//${dev}`, // 基本地址
-  API_RESOURCE_URL: `${protocol}//${dev}` // 资源地址
+  API_RESOURCE_URL: `${protocol}//${dev}`, // 资源地址
 }
 /**
  * @description: 生产
@@ -19,7 +19,7 @@ const development: BaseApiType = {
  */
 const production: BaseApiType = {
   API_BASE_URL: `${protocol}//${prod}`,
-  API_RESOURCE_URL: `${protocol}//${prod}`
+  API_RESOURCE_URL: `${protocol}//${prod}`,
 }
 /**
  * @description: 请求地址前缀

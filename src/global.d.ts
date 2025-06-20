@@ -1,6 +1,12 @@
 const __isDev__: boolean
 
-type JSONValue = string | number | boolean | null | { [k: string]: JSONValue } | JSONValue[]
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | null
+  | { [k: string]: JSONValue }
+  | JSONValue[]
 
 type RequestQueryType = {
   query: Record<string, string>

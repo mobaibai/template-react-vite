@@ -1,50 +1,55 @@
-import { Button, Skeleton } from 'antd'
-import { animated, useSpring } from '@react-spring/web'
-import { useCountStore } from '@/stores/useCountStore'
-import { useEffect } from 'react'
-import { useData } from '@/hooks/useData'
+import { AnimationOpacity, AnimationScale } from '@/components/Animations'
 import { useTitle } from '@/hooks/useTitle'
+import { useCountStore } from '@/stores/useCountStore'
+import { Button, Skeleton } from 'antd'
+import React from 'react'
 
 interface Props {
   title?: string
 }
-export const Home: React.FC<Props> = (props) => {
+export const Home: React.FC<Props> = props => {
   if (props.title) useTitle(props.title)
 
-  const [countInc, countCut, count] = useCountStore(state => [state.inc, state.cut, state.count])
-
-  // 获取类型列表
-  const { data: testData, mutate: testMutate, error: testError, isLoading: testIsLoading, isValidating: testIsValidating } = useData({ method: 'get', path: '/api/test/list', params: { count } })
-
-  useEffect(() => {
-    testData && testMutate()
-  }, [count])
-
-  const countStyles = useSpring({
-    from: { transform: 'rotateZ(0)' },
-    loop: { transform: 'rotateZ(360deg)' },
-    to: { transform: 'rotateZ(0)' },
-    config: {
-      duration: 180
-    }
-  })
+  const { inc, cut, count } = useCountStore()
 
   return (
-    <div className='home-container p-10'>
-      <div className='count-action flex items-center justify-center rainbow-text'>
-        <Button onClick={countCut}>-</Button>
-        <animated.div className='count-view mx-5' style={{ ...countStyles }} text='center 30px'>
-          {count}
-        </animated.div>
-        <Button onClick={countInc}>+</Button>
-      </div>
+    <div className="home-container p-10 max-w-6xl mx-auto">
+      {/* 计数器功能 */}
+      <AnimationOpacity fromOpacity={0} toOpacity={1} duration={800}>
+        <h2 className="text-2xl font-bold text-center mb-6">计数器</h2>
+        <div className="count-action flex items-center justify-center rainbow-text">
+          <AnimationScale
+            type="scaleIn"
+            fromScale={0.8}
+            toScale={1}
+            delay={300}
+          >
+            <Button onClick={cut} size="large">
+              -
+            </Button>
+          </AnimationScale>
+          <div className="count-view w-20 text-4xl font-bold text-center">
+            {count}
+          </div>
+          <AnimationScale
+            type="scaleIn"
+            fromScale={0.8}
+            toScale={1}
+            delay={500}
+          >
+            <Button onClick={inc} size="large">
+              +
+            </Button>
+          </AnimationScale>
+        </div>
+      </AnimationOpacity>
     </div>
   )
 }
 
 export const HomeSkeleton = () => {
   return (
-    <div className='home-skeleton p-[20px]'>
+    <div className="home-skeleton p-[20px]">
       <Skeleton active />
     </div>
   )

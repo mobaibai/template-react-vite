@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { RouteItems } from '@/router/config'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { ItemType } from 'antd/es/menu/hooks/useItems'
+import type { ItemType } from 'antd/es/menu/interface'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 
-const menuItems: MenuProps['items'] = [
-  {
-    label: (<NavLink to={'/home'}>{'首页'}</NavLink>),
-    key: '/home',
-  },
-  {
-    label: (<NavLink to={'/components'}>{'组件'}</NavLink>),
-    key: '/components',
-  },
-]
-interface Props { }
+const menuItems: MenuProps['items'] = []
+RouteItems[0]?.children?.forEach(item => {
+  menuItems.push({
+    label: <NavLink to={item.path}>{item.name}</NavLink>,
+    key: item.path,
+  })
+})
+
+interface Props {}
 export const Header: React.FC<Props> = () => {
   const location = useLocation()
   const [menuCurrent, setMenuCurrent] = useState<string>(location.pathname)
@@ -30,7 +29,11 @@ export const Header: React.FC<Props> = () => {
   return (
     <div className="header-container">
       <div className="menu">
-        <Menu selectedKeys={[menuCurrent]} mode="horizontal" items={menuItems} />
+        <Menu
+          selectedKeys={[menuCurrent]}
+          mode="horizontal"
+          items={menuItems}
+        />
       </div>
     </div>
   )

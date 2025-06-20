@@ -1,5 +1,6 @@
 import path from 'node:path'
 import fs from 'node:fs'
+// @ts-ignore
 import store from 'svgstore'
 import { optimize } from 'svgo'
 import type { Plugin, ViteDevServer } from 'vite'

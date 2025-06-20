@@ -1,18 +1,21 @@
-import { Button } from 'antd'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { nanoid } from 'nanoid'
 import { usePopup } from '@/hooks/usePopup'
 import { useTitle } from '@/hooks/useTitle'
+import { RouteItems } from '@/router/config'
+import { Button } from 'antd'
+import { nanoid } from 'nanoid'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 interface PathItem {
   name: string
   path: string
 }
-const pathList: PathItem[] = [
-  { name: '导航跟随', path: 'nav' },
-  { name: '全局弹窗', path: 'modal' },
-  { name: '图标', path: 'icons' }
-]
+const pathList: PathItem[] = []
+RouteItems[0]?.children?.[1]?.children?.forEach(item => {
+  pathList.push({
+    name: item.name || '',
+    path: item.path,
+  })
+})
 
 interface Props {
   title?: string
@@ -22,8 +25,10 @@ export const Components: React.FC<Props> = props => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const { popup, show, hide } = usePopup({
-    children: <div className='popup-content'>这是一个全局弹窗</div>
+  const { popup, show } = usePopup({
+    children: (
+      <div className="popup-content rainbow-text">这是一个全局弹窗</div>
+    ),
   })
 
   /**
@@ -34,23 +39,26 @@ export const Components: React.FC<Props> = props => {
   const onClickButton = (item: PathItem) => {
     if (location.pathname !== item.path) {
       navigate(item.path)
-      if (pathList[1].path === item.path) show()
+      if (pathList[2].path === item.path) show()
     }
   }
 
   return (
-    <div className='components-container p-10'>
-      <div className='name flex justify-center'>Components</div>
-      <div className='components-items flex items-center justify-center mt-4 space-x-2'>
-        {pathList.map((item: PathItem, index: number) => (
-          <div key={nanoid()} className='components-item'>
-            <Button type={location.pathname === item.path ? 'primary' : 'default'} onClick={() => onClickButton(item)}>
+    <div className="components-container p-10">
+      <div className="name flex justify-center">Components</div>
+      <div className="components-items flex items-center justify-center mt-4 space-x-2">
+        {pathList.map((item: PathItem) => (
+          <div key={nanoid()} className="components-item">
+            <Button
+              type={location.pathname === item.path ? 'primary' : 'default'}
+              onClick={() => onClickButton(item)}
+            >
               {item.name}
             </Button>
           </div>
         ))}
       </div>
-      <div className='content'>
+      <div className="content">
         <Outlet />
       </div>
       {popup}

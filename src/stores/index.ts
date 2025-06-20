@@ -1,4 +1,3 @@
-import { APP_NAME } from '@/config'
 import { getStorage, removeStorage, setStorage } from '@/storage'
 import { create } from 'zustand'
 
@@ -23,7 +22,7 @@ export const useLoadingStore = create<Loading>(set => ({
   loadingOpen: false,
   setLoadingOpen: (loadingOpen: boolean) => {
     set({ loadingOpen })
-  }
+  },
 }))
 
 type LoginOpen = {
@@ -47,7 +46,7 @@ export const useLoginOpenStore = create<LoginOpen>(set => ({
   loginOpen: false,
   setLoginOpen: (loginOpen: boolean) => {
     set({ loginOpen })
-  }
+  },
 }))
 
 type UserData = {
@@ -79,7 +78,7 @@ export const useLoginStore = create<Login>(set => {
     realname: '',
     avatar: '',
     phone: '',
-    token: ''
+    token: '',
   }
   return {
     userData: getStorage(`UserData`) || initialValue,
@@ -89,8 +88,6 @@ export const useLoginStore = create<Login>(set => {
       const hoursSecond: number = 3600
       // 一天
       const day1Second: number = hoursSecond * 24
-      // 一周
-      const week1Second: number = day1Second * 7
       // 当前秒
       const currentSecond: number = Date.now() / 1000
       // 过期时间(秒)
@@ -100,6 +97,6 @@ export const useLoginStore = create<Login>(set => {
     removeUserData: () => {
       set({ userData: initialValue })
       removeStorage(`UserData`)
-    }
+    },
   }
 })

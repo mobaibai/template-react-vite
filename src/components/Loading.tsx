@@ -1,9 +1,9 @@
-import { Spin } from "antd"
+import { Spin } from 'antd'
 
-interface Props { }
-export const Loading: React.FC<Props> = (props) => {
+interface Props {}
+export const Loading: React.FC<Props> = _props => {
   return (
-    <div className='loading-component flex justify-center pt-[10%]'>
+    <div className="loading-component flex justify-center pt-[10%]">
       <Spin />
     </div>
   )

@@ -1,8 +1,8 @@
-import { Skeleton } from "antd"
+import { Skeleton } from 'antd'
 
 export const ModalSkeleton = () => {
   return (
-    <div className='modal-skeleton p-[20px]'>
+    <div className="modal-skeleton p-[20px]">
       <Skeleton active />
     </div>
   )

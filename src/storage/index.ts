@@ -1,20 +1,20 @@
-import CryptoJS from "crypto-js"
-import { APP_NAME } from "@/config"
+import { APP_NAME } from '@/config'
+import CryptoJS from 'crypto-js'
 
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161")
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a")
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 
 // 类型 window.localStorage, window.sessionStorage,
 interface ConfigType {
-  type?: "localStorage" | "sessionStorage"
+  type?: 'localStorage' | 'sessionStorage'
   prefix?: string | undefined
   expire?: number
   isEncrypt?: boolean
 }
 const config: ConfigType = {
-  type: "localStorage", // 本地默认存储类型 localStorage
+  type: 'localStorage', // 本地默认存储类型 localStorage
   prefix: APP_NAME, // 名称前缀: 项目名 + 版本
   expire: 0, // 过期时间 单位：秒
   isEncrypt: !__isDev__, // 默认加密 可设置开发环境与生产环境
@@ -27,7 +27,7 @@ const config: ConfigType = {
  * if (isSupportStorage()) console.log("支持 Storage")
  */
 export function isSupportStorage() {
-  return typeof Storage !== "undefined"
+  return typeof Storage !== 'undefined'
 }
 
 /**
@@ -40,12 +40,16 @@ export function isSupportStorage() {
  * @example:
  * setStorage("key", "data", { expire: 60, type: "localStorage" })
  */
-export function setStorage<T>(key: string, value: T | null, { expire = 0, type = "localStorage" }: ConfigType = {}) {
-  if (value === "" || value === null || value === undefined) {
+export function setStorage<T>(
+  key: string,
+  value: T | null,
+  { expire = 0, type = 'localStorage' }: ConfigType = {}
+) {
+  if (value === '' || value === null || value === undefined) {
     value = null
   }
 
-  if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number")
+  if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
   const data = {
     value, // 存储值
@@ -53,7 +57,9 @@ export function setStorage<T>(key: string, value: T | null, { expire = 0, type =
     expire, // 过期时间
   }
 
-  const encryptString = config.isEncrypt ? encrypt(JSON.stringify(data)) : JSON.stringify(data)
+  const encryptString = config.isEncrypt
+    ? encrypt(JSON.stringify(data))
+    : JSON.stringify(data)
 
   window[type].setItem(autoAddPrefix(key), encryptString)
 }
@@ -66,16 +72,24 @@ export function setStorage<T>(key: string, value: T | null, { expire = 0, type =
  * @example:
  * const data = getStorage("key", { type: "localStorage" })
  */
-export function getStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
+export function getStorage(
+  key: string,
+  { type = 'localStorage' }: ConfigType = {}
+) {
   key = autoAddPrefix(key)
   // key 不存在判断
-  if (!window[type].getItem(key) || JSON.stringify(window[type].getItem(key)) === "null") {
+  if (
+    !window[type].getItem(key) ||
+    JSON.stringify(window[type].getItem(key)) === 'null'
+  ) {
     return null
   }
 
   // 优化 持续使用中续期
   const item = window[type].getItem(key)
-  const storage: Storage = config.isEncrypt ? JSON.parse(decrypt(item ?? "")) : JSON.parse(item ?? "")
+  const storage: Storage = config.isEncrypt
+    ? JSON.parse(decrypt(item ?? ''))
+    : JSON.parse(item ?? '')
 
   const nowTime = Date.now() / 1000
 
@@ -98,7 +112,10 @@ export function getStorage(key: string, { type = "localStorage" }: ConfigType = 
  * @example:
  * removeStorage("key", { type: "localStorage" })
  */
-export function removeStorage(key: string, { type = "localStorage" }: ConfigType = {}) {
+export function removeStorage(
+  key: string,
+  { type = 'localStorage' }: ConfigType = {}
+) {
   window[type].removeItem(autoAddPrefix(key))
 }
 
@@ -140,7 +157,10 @@ export function getStorageKeys() {
  * @example:
  * const key = getStorageForIndex(0, { type: "localStorage" })
  */
-export function getStorageForIndex(index: number, { type = "localStorage" }: ConfigType = {}) {
+export function getStorageForIndex(
+  index: number,
+  { type = 'localStorage' }: ConfigType = {}
+) {
   return window[type].key(index)
 }
 
@@ -151,7 +171,7 @@ export function getStorageForIndex(index: number, { type = "localStorage" }: Con
  * @example:
  * const len = getStorageLength({ type: "localStorage" })
  */
-export function getStorageLength({ type = "localStorage" }: ConfigType = {}) {
+export function getStorageLength({ type = 'localStorage' }: ConfigType = {}) {
   return window[type].length
 }
 
@@ -162,14 +182,14 @@ export function getStorageLength({ type = "localStorage" }: ConfigType = {}) {
  * @example:
  * const all = getStorageAll({ type: "localStorage" })
  */
-export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
+export function getStorageAll({ type = 'localStorage' }: ConfigType = {}) {
   const len = window[type].length // 获取长度
   const arr = [] // 定义数据集
   for (let i = 0; i < len; i++) {
     // 获取key 索引从0开始
     const getKey = window[type].key(i)
     // 获取key对应的值
-    const getVal = getKey === null ? "" : window[type].getItem(getKey)
+    const getVal = getKey === null ? '' : window[type].getItem(getKey)
     // 放进数组
     arr[i] = { key: getKey, val: getVal }
   }
@@ -183,7 +203,7 @@ export function getStorageAll({ type = "localStorage" }: ConfigType = {}) {
  * @example:
  * clearStorage({ type: "localStorage" })
  */
-export function clearStorage({ type = "localStorage" }: ConfigType = {}) {
+export function clearStorage({ type = 'localStorage' }: ConfigType = {}) {
   window[type].clear()
 }
 
@@ -195,7 +215,7 @@ export function clearStorage({ type = "localStorage" }: ConfigType = {}) {
  * const key = autoAddPrefix("key")
  */
 function autoAddPrefix(key: string) {
-  const prefix = config.prefix ? `${config.prefix}_` : ""
+  const prefix = config.prefix ? `${config.prefix}_` : ''
   return prefix + key
 }
 
@@ -220,12 +240,12 @@ function autoRemovePrefix(key: string) {
  * const data = encrypt("data")
  */
 function encrypt(data: string) {
-  if (typeof data === "object") {
+  if (typeof data === 'object') {
     try {
       data = JSON.stringify(data)
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("encrypt error:", error)
+      console.log('encrypt error:', error)
     }
   }
   const dataHex = CryptoJS.enc.Utf8.parse(data)
