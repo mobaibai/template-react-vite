@@ -67,6 +67,58 @@ pnpm format
 
 # 检查代码格式
 pnpm format:check
+
+# 部署到 GitHub Pages
+pnpm deploy
+```
+
+## 🚀 GitHub Pages 部署
+
+本项目已配置自动部署到 GitHub Pages，支持两种部署方式：
+
+### 自动部署（推荐）
+
+1. **启用 GitHub Pages**：
+   - 进入 GitHub 仓库设置页面
+   - 找到 "Pages" 选项
+   - 在 "Source" 中选择 "GitHub Actions"
+
+2. **推送代码触发部署**：
+   ```bash
+   git add .
+   git commit -m "feat: 添加 GitHub Pages 部署配置"
+   git push origin main
+   ```
+
+3. **查看部署状态**：
+   - 在 GitHub 仓库的 "Actions" 标签页查看构建状态
+   - 部署成功后，访问 `https://your-username.github.io/template-react-vite/`
+
+### 手动部署
+
+如果需要手动部署，可以使用以下命令：
+
+```bash
+# 安装 gh-pages 依赖（如果还未安装）
+pnpm install
+
+# 构建并部署
+pnpm deploy
+```
+
+### 部署配置说明
+
+- **GitHub Actions 工作流**：`.github/workflows/deploy.yml`
+- **构建输出目录**：`dist/`
+- **部署分支**：`gh-pages`
+- **访问路径**：`/template-react-vite/`（生产环境）
+
+### 自定义域名（可选）
+
+如果你有自定义域名，可以在 `public/` 目录下创建 `CNAME` 文件：
+
+```bash
+echo "your-domain.com" > public/CNAME
 ```
 
 ## 开发环境配置

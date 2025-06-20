@@ -30,7 +30,7 @@ export default defineConfig(({ command }) => ({
     open: true
   },
 
-  base: './',
+  base: process.env.NODE_ENV === 'production' ? '/template-react-vite/' : './',
 
   build: {
     chunkSizeWarningLimit: 1500,
