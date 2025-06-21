@@ -2,6 +2,7 @@ import { Loading } from '@/components/Loading'
 import React, { Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { type RouteType, RouteItems } from './config'
+import RouteTransition from '@/components/RouteTransition'
 
 const RouterViews = (routerItems: RouteType[]) => {
   if (routerItems && routerItems.length) {
@@ -12,9 +13,11 @@ const RouterViews = (routerItems: RouteType[]) => {
             path={path}
             key={path}
             element={
-              <Suspense fallback={!Skeleton ? <Loading /> : <Skeleton />}>
-                <Element title={name} />
-              </Suspense>
+              <RouteTransition>
+                <Suspense fallback={!Skeleton ? <Loading /> : <Skeleton />}>
+                  <Element title={name} />
+                </Suspense>
+              </RouteTransition>
             }
           >
             {RouterViews(children)}
@@ -28,9 +31,11 @@ const RouterViews = (routerItems: RouteType[]) => {
             key={path}
             path={path}
             element={
-              <Suspense fallback={!Skeleton ? <Loading /> : <Skeleton />}>
-                <Element title={name} />
-              </Suspense>
+              <RouteTransition>
+                <Suspense fallback={!Skeleton ? <Loading /> : <Skeleton />}>
+                  <Element title={name} />
+                </Suspense>
+              </RouteTransition>
             }
           />
         )
