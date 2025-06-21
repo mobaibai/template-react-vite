@@ -1,8 +1,27 @@
 {
   "name": "template-react-vite",
+  "description": "A modern React template with Vite, TypeScript, Ant Design, and UnoCSS",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "vite",
+    "typescript",
+    "antd",
+    "unocss",
+    "template"
+  ],
+  "author": "PureSilent",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobaibai/template-react-vite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mobaibai/template-react-vite/issues"
+  },
+  "homepage": "https://github.com/mobaibai/template-react-vite#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
