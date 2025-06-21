@@ -10,8 +10,8 @@ const EmptyPage: React.FC<Props> = props => {
   if (props.title) useTitle(props.title)
 
   return (
-    <div className="empty-page-container h-screen flex flex-col center space-y-50px">
-      <div className="empty flex flex-col center space-y-20px">
+    <div className="empty-page-container h-screen flex-center flex-col space-y-50px">
+      <div className="empty flex-col flex-center space-y-20px">
         <div className="img">
           <img className="h-50" src={page404} alt="" />
         </div>
