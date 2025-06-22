@@ -19,6 +19,11 @@ export default defineConfig({
     open: true
   },
 
+  define: {
+    __isDev__: process.env.NODE_ENV === 'development',
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version)
+  },
+
   base: process.env.NODE_ENV === 'production' ? PRJ_PATH : './',
 
   build: {

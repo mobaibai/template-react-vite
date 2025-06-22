@@ -17,7 +17,7 @@ const config: ConfigType = {
   type: 'localStorage', // 本地默认存储类型 localStorage
   prefix: APP_NAME, // 名称前缀: 项目名 + 版本
   expire: 0, // 过期时间 单位：秒
-  isEncrypt: process.env.NODE_ENV === 'production', // 生产环境加密
+  isEncrypt: !__isDev__, // 生产环境加密
 }
 
 /**
