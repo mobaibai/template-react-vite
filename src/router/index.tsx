@@ -1,8 +1,8 @@
 import { Loading } from '@/components/Loading'
+import RouteTransition from '@/components/RouteTransition'
 import React, { Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { type RouteType, RouteItems } from './config'
-import RouteTransition from '@/components/RouteTransition'
 
 const RouterViews = (routerItems: RouteType[]) => {
   if (routerItems && routerItems.length) {

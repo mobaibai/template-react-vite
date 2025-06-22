@@ -1,7 +1,8 @@
-import path from 'node:path'
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import path from 'node:path'
 import UnoCSS from 'unocss/vite'
+import { defineConfig } from 'vite'
+import { PRJ_PATH } from './src/config/index'
 import { svgsprites } from './vite_plugins/svgsprites'
 
 // https://vite.dev/config/
@@ -11,14 +12,6 @@ export default defineConfig(({ command }) => ({
   },
 
   plugins: [UnoCSS(), react(), svgsprites({ noOptimizeList: ['logo'] })],
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler'
-      }
-    }
-  },
 
   resolve: {
     alias: {
@@ -30,10 +23,10 @@ export default defineConfig(({ command }) => ({
     open: true
   },
 
-  base: process.env.NODE_ENV === 'production' ? '/template-react-vite/' : './',
+  base: process.env.NODE_ENV === 'production' ? PRJ_PATH : './',
 
   build: {
-    chunkSizeWarningLimit: 1500,
+    chunkSizeWarningLimit: 1024,
     terserOptions: {
       compress: {
         drop_console: true,

@@ -34,6 +34,12 @@ export const BaseApi: BaseApiType = __isDev__ ? development : production
 export const APP_NAME: string = 'APP_NAME'
 
 /**
+ * @description: 项目路径
+ * @return {type}
+ */
+export const PRJ_PATH: string = '/template-react-vite/'
+
+/**
  * @description: 主题色
  */
 export const ThemePrimary: string = '#13c2c2'

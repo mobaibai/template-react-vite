@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { useSpring, animated } from '@react-spring/web'
+import { animated, useSpring } from '@react-spring/web'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 interface RouteTransitionProps {
@@ -25,15 +25,15 @@ const RouteTransition: React.FC<RouteTransitionProps> = ({ children }) => {
     // 组件首次挂载或路径变化时重置动画
     if (!mountedRef.current || prevPathnameRef.current !== location.pathname) {
       setIsVisible(false)
-      
+
       // 使用 setTimeout 确保状态重置后再开始动画
       const timer = setTimeout(() => {
         setIsVisible(true)
       }, 10)
-      
+
       mountedRef.current = true
       prevPathnameRef.current = location.pathname
-      
+
       return () => {
         clearTimeout(timer)
       }
