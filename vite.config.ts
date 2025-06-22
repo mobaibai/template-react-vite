@@ -6,11 +6,7 @@ import { PRJ_PATH } from './src/config/index'
 import { svgsprites } from './vite_plugins/svgsprites'
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
-  define: {
-    __isDev__: command === 'serve'
-  },
-
+export default defineConfig({
   plugins: [UnoCSS(), react(), svgsprites({ noOptimizeList: ['logo'] })],
 
   resolve: {
@@ -34,4 +30,4 @@ export default defineConfig(({ command }) => ({
       }
     }
   }
-}))
+})

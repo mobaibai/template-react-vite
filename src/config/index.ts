@@ -1,31 +1,46 @@
-const dev = window.location.host
+const dev = 'localhost:5173'
 const prod = 'xxx.com'
-const protocol = window.location.protocol
+
+const getProtocol = (): string => {
+  if (
+    typeof globalThis !== 'undefined' &&
+    'window' in globalThis &&
+    (globalThis as any).window?.location
+  ) {
+    return (globalThis as any).window.location.protocol
+  }
+  return 'http:' // Node.js环境默认值
+}
+
 interface BaseApiType {
   API_BASE_URL: string
   API_RESOURCE_URL: string
 }
+
 /**
  * @description: 开发
  * @return {type}
  */
 const development: BaseApiType = {
-  API_BASE_URL: `${protocol}//${dev}`, // 基本地址
-  API_RESOURCE_URL: `${protocol}//${dev}`, // 资源地址
+  API_BASE_URL: `${getProtocol()}//${dev}`, // 基本地址
+  API_RESOURCE_URL: `${getProtocol()}//${dev}`, // 资源地址
 }
+
 /**
  * @description: 生产
  * @return {type}
  */
 const production: BaseApiType = {
-  API_BASE_URL: `${protocol}//${prod}`,
-  API_RESOURCE_URL: `${protocol}//${prod}`,
+  API_BASE_URL: `${getProtocol()}//${prod}`,
+  API_RESOURCE_URL: `${getProtocol()}//${prod}`,
 }
+
 /**
  * @description: 请求地址前缀
  * @return {type}
  */
-export const BaseApi: BaseApiType = __isDev__ ? development : production
+export const BaseApi: BaseApiType =
+  process.env.NODE_ENV === 'development' ? development : production
 
 /**
  * @description: 项目名

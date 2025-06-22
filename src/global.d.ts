@@ -1,5 +1,3 @@
-const __isDev__: boolean
-
 type JSONValue =
   | string
   | number
