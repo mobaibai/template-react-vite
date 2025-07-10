@@ -5,7 +5,6 @@ import { defineConfig } from 'vite'
 import { PRJ_PATH } from './src/config/index'
 import { svgsprites } from './vite_plugins/svgsprites'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [UnoCSS(), react(), svgsprites({ noOptimizeList: ['logo'] })],
 
@@ -24,7 +23,10 @@ export default defineConfig({
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version)
   },
 
-  base: process.env.NODE_ENV === 'production' ? PRJ_PATH : './',
+  // 兼容 GitHub Pages 和 Netlify
+  base: process.env.NODE_ENV === 'production'
+    ? (process.env.DEPLOY_TARGET === 'github' ? PRJ_PATH : '/')
+    : './',
 
   build: {
     chunkSizeWarningLimit: 1024,

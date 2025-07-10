@@ -2,9 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
@@ -15,7 +15,7 @@ permissions:
 # 只允许一个并发部署，跳过正在运行和最新队列之间的运行队列
 # 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -25,27 +25,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
-          
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        
+
       - name: Build
         run: pnpm run build
-        
+        env:
+          DEPLOY_TARGET: github
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
