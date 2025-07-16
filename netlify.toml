@@ -6,7 +6,7 @@
 # 构建环境变量
 [build.environment]
   DEPLOY_TARGET = "netlify"
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
   PNPM_VERSION = "10"
 
 # SPA 路由重定向
