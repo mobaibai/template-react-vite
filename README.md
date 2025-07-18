@@ -5,10 +5,12 @@
 ## 📖 文档
 
 ### 主要文档
+
 - [中文文档](README.md) (当前文档)
 - [English Documentation](docs/README.en.md)
 
 ### 专项文档
+
 - [动画组件库文档](docs/animations.md) | [Animation Library Documentation](docs/animations.en.md)
 - [部署指南](docs/deploy.md) | [Deployment Guide](docs/deploy.en.md)
 - [GitHub Pages 设置指南](docs/github-pages-setup.md) | [GitHub Pages Setup Guide](docs/github-pages-setup.en.md)
@@ -16,6 +18,7 @@
 ## ✨ 项目特色
 
 ### 🎨 完整的动画组件库
+
 - 基于 `@react-spring/web` 构建的高性能动画系统
 - 包含透明度、弹簧、滑动、缩放、旋转、组合、序列等多种动画效果
 - 完整的 TypeScript 类型支持和智能提示
@@ -25,6 +28,7 @@
 - 优化的滚动体验，支持长内容的流畅滚动
 
 ### 🚀 现代化技术栈
+
 - **React 19** - 最新版本的 React 框架，支持并发特性和最新 Hooks
 - **TypeScript 5.8** - 类型安全的 JavaScript 超集，提供强大的开发时支持
 - **Vite 7** - 极速的构建工具和开发服务器，支持 HMR 和快速冷启动
@@ -38,6 +42,7 @@
 - **React SWC** - 极速的 TypeScript/JavaScript 编译器
 
 ### 🏗️ 优秀的项目架构
+
 - 组件化设计，职责分离，高度可复用
 - 模块化文件组织，清晰的目录结构
 - 懒加载和代码分割优化，提升加载性能
@@ -47,6 +52,7 @@
 - 完善的错误边界和加载状态处理
 
 ### 🛠️ 完善的开发工具链
+
 - **ESLint + TypeScript ESLint** - 代码质量检查和类型安全
 - **Prettier** - 代码格式化，支持导入排序和组织
 - **Husky + lint-staged** - Git 钩子和预提交检查（可选）
@@ -57,6 +63,7 @@
 ## 📦 安装与使用
 
 ### 环境要求
+
 - Node.js >= 18
 - pnpm >= 8 (推荐)
 
@@ -105,6 +112,7 @@ pnpm deploy
    - 在 "Source" 中选择 "GitHub Actions"
 
 2. **推送代码触发部署**：
+
    ```bash
    git add .
    git commit -m "feat: 添加 GitHub Pages 部署配置"
@@ -180,7 +188,6 @@ src/
 │   ├── Header.tsx       # 头部组件
 │   ├── Loading.tsx      # 加载组件
 │   ├── NavFollow.tsx    # 导航跟随组件
-│   └── RouteTransition/ # 路由过渡动画
 ├── pages/              # 页面组件
 │   ├── home/           # 首页
 │   ├── animations/     # 动画演示页
@@ -211,6 +218,7 @@ src/
 项目内置了完整的动画组件库，位于 `src/components/Animations/`：
 
 #### 基础动画组件
+
 - **AnimationOpacity** - 透明度动画，支持淡入淡出效果
 - **AnimationSpring** - 弹簧动画，提供自然的物理动画效果
 - **AnimationSlide** - 滑动动画，支持多方向滑入滑出
@@ -218,17 +226,18 @@ src/
 - **AnimationRotate** - 旋转动画，支持旋转、翻转、持续旋转
 
 #### 高级动画组件
+
 - **AnimationContainer** - 组合动画容器，支持并行和序列执行
 - **AnimationSequence** - 序列动画，精确控制多步骤动画
 
 #### 使用示例
 
 ```tsx
-import { 
-  AnimationOpacity, 
-  AnimationSpring, 
+import {
+  AnimationOpacity,
+  AnimationSpring,
   AnimationContainer,
-  AnimationSequence 
+  AnimationSequence
 } from '@/components/animations'
 
 // 透明度动画
@@ -276,10 +285,10 @@ interface CountState {
   decrement: () => void
 }
 
-const useCountStore = create<CountState>((set) => ({
+const useCountStore = create<CountState>(set => ({
   count: 0,
-  increment: () => set((state) => ({ count: state.count + 1 })),
-  decrement: () => set((state) => ({ count: state.count - 1 })),
+  increment: () => set(state => ({ count: state.count + 1 })),
+  decrement: () => set(state => ({ count: state.count - 1 })),
 }))
 
 // 在组件中使用
@@ -360,6 +369,7 @@ useTitle('页面标题')
 #### 动画演示页面
 
 访问 `/animations` 路径可以查看完整的动画演示，页面特性：
+
 - 📱 **响应式设计** - 适配各种屏幕尺寸
 - 🖱️ **流畅滚动** - 优化的滚动体验，支持长内容浏览
 - 🎮 **交互式演示** - 实时预览各种动画效果
@@ -388,6 +398,7 @@ const { count, inc, cut } = useCountStore()
 ### 工具函数
 
 提供了丰富的工具函数，包括：
+
 - 时间格式化
 - 数据处理
 - 动画工具
@@ -479,9 +490,9 @@ export const customAnimations = {
       direction: 'top',
       distance: 50,
       tension: 300,
-      friction: 10
-    }
-  }
+      friction: 10,
+    },
+  },
 }
 ```
 
@@ -492,12 +503,12 @@ export const customAnimations = {
 ```typescript
 const development: BaseApiType = {
   API_BASE_URL: 'http://localhost:3000/api',
-  API_RESOURCE_URL: 'http://localhost:3000'
+  API_RESOURCE_URL: 'http://localhost:3000',
 }
 
 const production: BaseApiType = {
   API_BASE_URL: 'https://your-api.com/api',
-  API_RESOURCE_URL: 'https://your-cdn.com'
+  API_RESOURCE_URL: 'https://your-cdn.com',
 }
 ```
 
@@ -531,7 +542,7 @@ test('renders animation component', () => {
       <div>Test content</div>
     </AnimationOpacity>
   )
-  
+
   expect(screen.getByText('Test content')).toBeInTheDocument()
 })
 ```
@@ -607,17 +618,20 @@ src/
 ## 🛠️ 开发工具
 
 ### 代码规范
+
 - **ESLint** - 代码质量检查
 - **TypeScript** - 类型检查
 - **Prettier** - 代码格式化工具，支持保存时自动格式化
 
 ### 构建优化
+
 - **Vite** - 快速构建和热更新
 - **代码分割** - 按需加载
 - **Tree Shaking** - 移除未使用代码
 - **SVG Sprites** - SVG 图标优化
 
 ### 样式方案
+
 - **UnoCSS** - 原子化 CSS
 - **SCSS** - CSS 预处理器
 - **CSS Modules** - 样式模块化
@@ -625,26 +639,32 @@ src/
 ## 🎨 动画组件详细文档
 
 ### AnimationOpacity
+
 透明度动画组件，支持淡入淡出效果。
 
 **Props:**
+
 - `fromOpacity` - 起始透明度 (0-1)
 - `toOpacity` - 目标透明度 (0-1)
 - `duration` - 动画持续时间 (ms)
 - `delay` - 延迟时间 (ms)
 
 ### AnimationSpring
+
 弹簧动画组件，支持多方向滑入效果。
 
 **Props:**
+
 - `direction` - 动画方向 ('top' | 'bottom' | 'left' | 'right')
 - `distance` - 移动距离 (px)
 - `config` - 弹簧配置
 
 ### AnimationContainer
+
 组合动画容器，支持多种动画效果的组合。
 
 **Props:**
+
 - `effects` - 动画效果数组
 - `mode` - 执行模式 ('parallel' | 'sequence')
 - `delay` - 全局延迟
@@ -652,17 +672,20 @@ src/
 ## 🔧 配置说明
 
 ### Vite 配置
+
 - 路径别名配置 (`@` 指向 `src`)
 - UnoCSS 集成
 - SVG Sprites 插件
 - 开发服务器自动打开
 
 ### TypeScript 配置
+
 - 严格模式启用
 - 路径映射配置
 - 类型声明文件
 
 ### UnoCSS 配置
+
 - 预设配置
 - 自定义规则
 - 响应式断点
@@ -809,8 +832,10 @@ VITE_API_KEY=your-secret-api-key
 
 ```html
 <!-- 在 index.html 中添加 CSP 头 -->
-<meta http-equiv="Content-Security-Policy" 
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+/>
 ```
 
 ### XSS 防护
@@ -860,12 +885,14 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 const ResponsiveComponent = () => {
   const { width } = useWindowSize()
   const isMobile = width < 768
-  
+
   return (
-    <div className={`
+    <div
+      className={`
       ${isMobile ? 'flex-col' : 'flex-row'}
       flex gap-4
-    `}>
+    `}
+    >
       {/* 响应式内容 */}
     </div>
   )

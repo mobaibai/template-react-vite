@@ -54,3 +54,6 @@ export const HomeSkeleton = () => {
     </div>
   )
 }
+
+// 默认导出以支持动态导入
+export default Home

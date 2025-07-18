@@ -46,7 +46,7 @@ export const BaseApi: BaseApiType =
  * @description: 项目名
  * @return {type}
  */
-export const APP_NAME: string = 'APP_NAME'
+export const APP_NAME: string = 'TemplateReactVite'
 
 /**
  * @description: 项目路径

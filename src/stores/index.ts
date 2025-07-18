@@ -15,7 +15,7 @@ type Loading = {
  * <div className='loading-container'>
  *   <button onClick={() => setLoadingOpen(true)}>打开Loading</button>
  *   <button onClick={() => setLoadingOpen(false)}>关闭Loading</button>
- *   {loadingOpen && <Loading />}
+ *   {loadingOpen && <CustomLoading />}
  * </div>
  */
 export const useLoadingStore = create<Loading>(set => ({

@@ -1,18 +1,22 @@
 import { Header } from '@/components/Header'
+import ResourcePreloader, {
+  defaultResources,
+} from '@/components/ResourcePreloader'
 import { ThemePrimary } from '@/config'
+import '@ant-design/v5-patch-for-react-19'
 import { ConfigProvider } from 'antd'
 import { HashRouter } from 'react-router-dom'
-import RouterConainer from './router'
-// React19兼容包
-import '@ant-design/v5-patch-for-react-19'
-// @ts-ignore
 import 'virtual:svgsprites'
+import RouterConainer from './router'
 import './styles/app.scss'
 import './styles/global.scss'
 
 function App() {
   return (
     <div className="App">
+      {/* 资源预加载器 */}
+      <ResourcePreloader resources={defaultResources} enabled={true} />
+
       <ConfigProvider
         theme={{
           token: {
