@@ -97,12 +97,16 @@ const normalizePath = (parentPath: string, childPath: string): string => {
   if (!parentPath || parentPath === '/') {
     return childPath.startsWith('/') ? childPath : `/${childPath}`
   }
-  
+
   // 确保父路径不以斜杠结尾
-  const cleanParentPath = parentPath.endsWith('/') ? parentPath.slice(0, -1) : parentPath
+  const cleanParentPath = parentPath.endsWith('/')
+    ? parentPath.slice(0, -1)
+    : parentPath
   // 确保子路径不以斜杠开头
-  const cleanChildPath = childPath.startsWith('/') ? childPath.slice(1) : childPath
-  
+  const cleanChildPath = childPath.startsWith('/')
+    ? childPath.slice(1)
+    : childPath
+
   return `${cleanParentPath}/${cleanChildPath}`
 }
 

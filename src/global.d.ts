@@ -1,3 +1,16 @@
+declare global {
+  interface Document {
+    startViewTransition?: (callback?: () => void) => ViewTransition
+  }
+
+  interface ViewTransition {
+    finished: Promise<void>
+    ready: Promise<void>
+    updateCallbackDone: Promise<void>
+    skipTransition(): void
+  }
+}
+
 type JSONValue =
   | string
   | number
@@ -28,3 +41,5 @@ type DataType<R> = {
   code: number
   data: E
 }
+
+export {}

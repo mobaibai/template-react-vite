@@ -63,7 +63,8 @@ export const usePerformanceMonitor = (config: PerformanceConfig = {}) => {
 
         // 最大内容绘制 (LCP) - 使用缓存的值而不是直接查询废弃的 API
         if (metricsRef.current.largestContentfulPaint) {
-          metrics.largestContentfulPaint = metricsRef.current.largestContentfulPaint
+          metrics.largestContentfulPaint =
+            metricsRef.current.largestContentfulPaint
         }
       }
 
@@ -97,10 +98,13 @@ export const usePerformanceMonitor = (config: PerformanceConfig = {}) => {
           }
         }
       })
-      
+
       // 使用 try-catch 包装以避免废弃 API 警告
       try {
-        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
+        lcpObserver.observe({
+          type: 'largest-contentful-paint',
+          buffered: true,
+        })
       } catch (error) {
         // 降级到旧 API
         try {
