@@ -14,7 +14,7 @@ axios.interceptors.request.use(config => {
   return config
 })
 
-type Options = {
+interface Options {
   showLoading?: boolean
   handleError?: boolean
 }

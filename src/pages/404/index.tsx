@@ -3,7 +3,7 @@ import { useTitle } from '@/hooks/useTitle'
 import { Button } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-type Props = {
+interface Props {
   title?: string
 }
 const EmptyPage: React.FC<Props> = props => {

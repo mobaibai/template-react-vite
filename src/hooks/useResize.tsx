@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 export const width = 1920
 export const height = 1080
 
-type ResizeType = {
+interface ResizeType {
   w?: number
   h?: number
   fullScreen?: boolean

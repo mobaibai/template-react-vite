@@ -1,7 +1,7 @@
 import { getStorage, removeStorage, setStorage } from '@/storage'
 import { create } from 'zustand'
 
-type Loading = {
+interface Loading {
   loadingOpen: boolean
   setLoadingOpen: (loadingOpen: boolean) => void
 }
@@ -25,7 +25,7 @@ export const useLoadingStore = create<Loading>(set => ({
   },
 }))
 
-type LoginOpen = {
+interface LoginOpen {
   loginOpen: boolean
   setLoginOpen: (loginOpen: boolean) => void
 }
@@ -49,7 +49,7 @@ export const useLoginOpenStore = create<LoginOpen>(set => ({
   },
 }))
 
-type UserData = {
+interface UserData {
   uid: number | string
   localstore: string
   nickname: string
@@ -58,7 +58,7 @@ type UserData = {
   phone: string
   token: string
 }
-type Login = {
+interface Login {
   userData: UserData
   setUserData: (userData: UserData) => void
   removeUserData: () => void

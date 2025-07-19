@@ -9,37 +9,37 @@ declare global {
     updateCallbackDone: Promise<void>
     skipTransition(): void
   }
-}
 
-type JSONValue =
-  | string
-  | number
-  | boolean
-  | null
-  | { [k: string]: JSONValue }
-  | JSONValue[]
+  type JSONValue =
+    | string
+    | number
+    | boolean
+    | null
+    | { [k: string]: JSONValue }
+    | JSONValue[]
 
-type RequestQueryType = {
-  query: Record<string, string>
-}
-
-type ItemType = {
-  id?: string | number
-}
-
-type ResponseDataListType = {
-  list: ItemType[]
-  query: E
-  pages: {
-    page: number
-    per: number
-    total_page: number
+  interface RequestQueryType {
+    query: Record<string, string>
   }
-}
 
-type DataType<R> = {
-  code: number
-  data: E
+  interface ItemType {
+    id?: string | number
+  }
+
+  interface ResponseDataListType {
+    list: ItemType[]
+    query: E
+    pages: {
+      page: number
+      per: number
+      total_page: number
+    }
+  }
+
+  interface DataType<R> {
+    code: number
+    data: E
+  }
 }
 
 export {}
