@@ -23,7 +23,7 @@ const config: ConfigType = {
 /**
  * @description: 判断是否支持 Storage
  * @return {type}
- * @example:
+ * @example
  * if (isSupportStorage()) console.log("支持 Storage")
  */
 export function isSupportStorage() {
@@ -37,7 +37,7 @@ export function isSupportStorage() {
  * @param {type} expire 过期时间(秒)
  * @param {type} type 类型
  * @return {type}
- * @example:
+ * @example
  * setStorage("key", "data", { expire: 60, type: "localStorage" })
  */
 export function setStorage<T>(
@@ -69,7 +69,7 @@ export function setStorage<T>(
  * @param {string} key
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * const data = getStorage("key", { type: "localStorage" })
  */
 export function getStorage(
@@ -109,7 +109,7 @@ export function getStorage(
  * @param {string} key
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * removeStorage("key", { type: "localStorage" })
  */
 export function removeStorage(
@@ -123,7 +123,7 @@ export function removeStorage(
  * @description: 是否存在 hasStorage
  * @param {string} key
  * @return {type}
- * @example:
+ * @example
  * if (hasStorage("key")) console.log("存在")
  */
 export function hasStorage(key: string) {
@@ -137,7 +137,7 @@ export function hasStorage(key: string) {
 /**
  * @description: 获取所有key
  * @return {type}
- * @example:
+ * @example
  * const keys = getStorageKeys()
  */
 export function getStorageKeys() {
@@ -154,7 +154,7 @@ export function getStorageKeys() {
  * @param {number} index
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * const key = getStorageForIndex(0, { type: "localStorage" })
  */
 export function getStorageForIndex(
@@ -168,7 +168,7 @@ export function getStorageForIndex(
  * @description: 获取localStorage长度
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * const len = getStorageLength({ type: "localStorage" })
  */
 export function getStorageLength({ type = 'localStorage' }: ConfigType = {}) {
@@ -179,7 +179,7 @@ export function getStorageLength({ type = 'localStorage' }: ConfigType = {}) {
  * @description: 获取全部 getAllStorage
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * const all = getStorageAll({ type: "localStorage" })
  */
 export function getStorageAll({ type = 'localStorage' }: ConfigType = {}) {
@@ -200,7 +200,7 @@ export function getStorageAll({ type = 'localStorage' }: ConfigType = {}) {
  * @description: 清空 clearStorage
  * @param {type} type 存储类型
  * @return {type}
- * @example:
+ * @example
  * clearStorage({ type: "localStorage" })
  */
 export function clearStorage({ type = 'localStorage' }: ConfigType = {}) {
@@ -211,7 +211,7 @@ export function clearStorage({ type = 'localStorage' }: ConfigType = {}) {
  * @description: 名称前自动添加前缀
  * @param {string} key
  * @return {type}
- * @example:
+ * @example
  * const key = autoAddPrefix("key")
  */
 function autoAddPrefix(key: string) {
@@ -223,7 +223,7 @@ function autoAddPrefix(key: string) {
  * @description: 移除已添加的前缀
  * @param {string} key
  * @return {type}
- * @example:
+ * @example
  * const key = autoRemovePrefix("key")
  */
 function autoRemovePrefix(key: string) {
@@ -236,7 +236,7 @@ function autoRemovePrefix(key: string) {
  * @description: 加密
  * @param {string} data
  * @return {*}
- * @example:
+ * @example
  * const data = encrypt("data")
  */
 function encrypt(data: string) {
@@ -261,7 +261,7 @@ function encrypt(data: string) {
  * @description: 解密
  * @param {string} data
  * @return {*}
- * @example:
+ * @example
  * const data = decrypt("data")
  */
 function decrypt(data: string) {

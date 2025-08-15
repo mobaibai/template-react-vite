@@ -9,7 +9,7 @@ interface Loading {
  * @description: 设置Loading
  * @param {type} create
  * @return {type}
- * @example:
+ * @example
  * const { loadingOpen, setLoadingOpen } = useLoadingStore()
  * --HTML--
  * <div className='loading-container'>
@@ -33,7 +33,7 @@ interface LoginOpen {
  * @description: 设置登录弹窗
  * @param {type} create
  * @return {type}
- * @example:
+ * @example
  * const { loginOpen, setLoginOpen } = useLoginOpenStore()
  * --HTML--
  * <div className='login-container'>
@@ -67,7 +67,7 @@ interface Login {
  * @description: 登录数据处理
  * @param {type} create
  * @return {type}
- * @example:
+ * @example
  * const { userData, setUserData, removeUserData } = useLoginStore()
  */
 export const useLoginStore = create<Login>(set => {
