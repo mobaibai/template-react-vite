@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 export interface PopupType {
   isOpen?: boolean
-  title?: string
+  title?: ReactNode
   maskClosable?: boolean
   width?: number
   className?: string

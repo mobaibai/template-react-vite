@@ -162,26 +162,13 @@ const RouterContainer = () => {
     <>
       {/* 过渡状态指示器（仅开发环境） */}
       {__isDev__ && isTransitioning && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 10,
-            right: 10,
-            background: 'rgba(0, 0, 0, 0.8)',
-            color: 'white',
-            padding: '4px 8px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            zIndex: 9999,
-            fontFamily: 'monospace',
-          }}
-        >
+        <div className="fixed top-10px right-10px bg-[rgba(0,0,0,0.8)] c-white py-4px px-8px rounded-4px text-12px z-9999 font-mono">
           🎬 Transitioning...
         </div>
       )}
 
       {/* 主要路由容器 */}
-      <div className={`min-h-screen relative isolate ${containerClassName}`}>
+      <div className={`router-container ${containerClassName}`}>
         <Routes>{RouterViews(RouteItems)}</Routes>
       </div>
     </>

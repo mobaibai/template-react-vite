@@ -27,7 +27,7 @@ export const Header: React.FC<Props> = () => {
   }, [location.pathname])
 
   return (
-    <div className="header-container">
+    <div className="header-container h-[var(--header-height)]">
       <div className="menu">
         <Menu
           selectedKeys={[menuCurrent]}
