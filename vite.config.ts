@@ -67,6 +67,6 @@ export default defineConfig({
     // 启用 CSS 代码分割
     cssCodeSplit: true,
     // 压缩配置
-    minify: 'terser'
+    minify: process.env.NODE_ENV === 'development' ? 'esbuild' : 'terser',
   }
 })
